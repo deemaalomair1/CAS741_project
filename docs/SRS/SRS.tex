@@ -76,7 +76,7 @@
 \newcommand{\lthelcnum}{LC\thelcnum}
 \newcommand{\lcref}[1]{LC\ref{#1}}
 \newcounter{ulcnum} %Likely change number
-\newcommand{\lthelcnum}{ULC\thelcnum}
+\newcommand{\ltheulcnum}{ULC\theulcnum}
 \newcommand{\ulcref}[1]{ULC\ref{#1}}
 \newcounter{typenum} %type Number
 \newcommand{\rthetypenum}{P\thetypenum}
@@ -145,8 +145,9 @@ description of the unit and the SI name.
 \subsection{Table of Symbols}
 
 The table that follows summarizes the symbols used in this document along with
-their units. The choice of symbols was made to be consistent with the stoichiometry 
-literature and with existing documentation for stoichiometry mass-mass program. The symbols are listed in alphabetical order.
+their units. The choice of symbols was made to be consistent with the
+stoichiometry literature and with existing documentation for stoichiometry
+mass-mass program. The symbols are listed in alphabetical order.
 
 \renewcommand{\arraystretch}{1.2}
 %\noindent \begin{tabularx}{1.0\textwidth}{l l X}
@@ -188,37 +189,58 @@ $R1$ & \si[per-mode=symbol] {-} & reactant with known mass.\\
   \caption{ Abbreviations and Acronyms}
  \end{table}
 
-
 \newpage
 
 \pagenumbering{arabic}
 
-
-
 \section{Introduction}
 
-
-
 \subsection{Purpose of Document}
-The purpose of this document is to describe the requirements for Stoichiometry Mass-Mass Program. A software product that will
-produce a mass for unknwon reactant in chemical reaction. The goal statements and theoretical models used in the SMMP code are provided, with an emphasis on explicitly identifying assumptions and unambiguous definitions. This document is intended to be used as a reference to provide ad hoc access to all information necessary to understand and verify the model. The SRS is abstract because the contents say what problem is being solved, but do not say how to solve it.\\
- This document will be used as a starting point for subsequent development phases, including writing the design specification and the software verification and validation plan. The design document will show how the requirements are to be realized, including decisions
-on the numerical algorithms and programming environment. The verification and validation plan will show the steps that will be used to increase confidence in the software documentation and the implementation. Although the SRS fits in a series of documents that follow
-the so-called waterfall model, the actual development process is not constrained in any way. Even when the waterfall model is not followed, as Parnas and Clements point out \cite{Parnas:Clements:1986}, the most logical way to present the documentation is still to “fake” a rational design process.
 
+The purpose of this document is to describe the requirements for Stoichiometry
+Mass-Mass Program. A software product that will produce a mass for unknwon
+\wss{spell check!} reactant in chemical reaction. The goal statements and
+theoretical models used in the SMMP code are provided, with an emphasis on
+explicitly identifying assumptions and unambiguous definitions. This document is
+intended to be used as a reference to provide ad hoc access to all information
+necessary to understand and verify the model. The SRS is abstract because the
+contents say what problem is being solved, but do not say how to solve it.
+
+This document will be used as a starting point for subsequent development
+phases, including writing the design specification and the software verification
+and validation plan. The design document will show how the requirements are to
+be realized, including decisions on the numerical algorithms and programming
+environment. The verification and validation plan will show the steps that will
+be used to increase confidence in the software documentation and the
+implementation. Although the SRS fits in a series of documents that follow the
+so-called waterfall model, the actual development process is not constrained in
+any way. Even when the waterfall model is not followed, as Parnas and Clements
+point out \cite{Parnas:Clements:1986}, the most logical way to present the
+documentation is still to “fake” a rational design process.
 
 \subsection{Scope of Requirements} 
 
-The scope of SMMP is limited to get the mass of unknown reactant in chemical reaction. 
+The scope of SMMP is limited to get the mass of unknown reactant in chemical
+reaction.
 
 \subsection{Characteristics of Intended Reader} \label{sec_IntendedReader}
 
-Reviewers of this documentation should have a background on Chemistry. Especially on chemical reactions and stoichiometry.
+Reviewers of this documentation should have a background on
+Chemistry. Especially on chemical reactions and stoichiometry.
 
 \subsection{Organization of Document}
 
-The organization of this document follows the template for an SRS for scientific computing software proposed by [dParnas1972] and [parnasClements1984]. The presentation follows the standard pattern of presenting goals, theories, definitions, and assumptions. For readers that would like a more bottom up approach, they can start reading the instance models in Section: Instance Models and trace back to find any additional information they require. \\
-The goal statements (Section: Goal Statements) are refined to the theoretical models and the theoretical models (Section: Theoretical Models) to the instance models (Section: Instance Models). 
+The organization of this document follows the template for an SRS for scientific
+computing software proposed by [dParnas1972] and [parnasClements1984]. \wss{use
+  citations in BibTeX for these.}  The presentation follows the standard pattern
+of presenting goals, theories, definitions, and assumptions. For readers that
+would like a more bottom up approach, they can start reading the instance models
+in Section: Instance Models and trace back to find any additional information
+they require.
+
+The goal statements (Section: Goal Statements) are refined to the theoretical
+models and the theoretical models (Section: Theoretical Models) to the instance
+models (Section: Instance Models).
 
 \section{General System Description}
 
@@ -228,11 +250,12 @@ characteristics and lists the system constraints.
 
 \subsection{System Context}
 
-Figure 1 shows the system context. A circle represents an external entity outside the
-software, the user in this case. A rectangle represents the software system itself (SMMP).
-Arrows are used to show the data flow between the system and its environment.
-SMMP is mostly self-contained. The only external interaction is through the user interface. The responsibilities of the user and the system are as follows:
-
+Figure 1 shows the system context. A circle represents an external entity
+outside the software, the user in this case. A rectangle represents the software
+system itself (SMMP).  Arrows are used to show the data flow between the system
+and its environment.  SMMP is mostly self-contained. The only external
+interaction is through the user interface. The responsibilities of the user and
+the system are as follows:
 
 \begin{figure}[h!]
 \begin{center}
@@ -247,14 +270,16 @@ SMMP is mostly self-contained. The only external interaction is through the user
 \item User Responsibilities:
 \begin{itemize}
 \item Ensure the inputs are correct.
-\item Ensure that all chemical reaction's elements entered are belong to chemical substances group.
+\item Ensure that all chemical reaction's elements entered are belong to
+  chemical substances group.
 \item Take care that consistent units are used for input variables.
 \end{itemize}
 \item SMMP Responsibilities:
 \begin{itemize}
 \item Detect data type mismatch, such as a string of characters instead of a
   floating point number.
-\item Determine if the inputs satisfy the required physical and software constraints.
+\item Determine if the inputs satisfy the required physical and software
+  constraints.
 \item Do the necessary calculations to get the final result.
 \item Display the result to the end user.
 \end{itemize}
@@ -271,17 +296,16 @@ There are no system constraints.
 \section{Specific System Description}
 
 This section first presents the problem description, which gives a high-level
-view of the problem to be solved.  This is followed by the solution characteristics
-specification, which presents the assumptions, theories, definitions and finally
-the instance models.  
+view of the problem to be solved.  This is followed by the solution
+characteristics specification, which presents the assumptions, theories,
+definitions and finally the instance models.
 
 \subsection{Problem Description} \label{Sec_pd}
 
-SMMP is intended to solve  Mass-Mass Stoichiometry problem in any chemical reaction. 
+SMMP is intended to solve Mass-Mass Stoichiometry problem in any chemical
+reaction.
 
 \subsubsection{Terminology and  Definitions}
-
-
 
 This subsection provides a list of terms that are used in the subsequent
 sections and their meaning, with the purpose of reducing ambiguity and making it
@@ -289,14 +313,21 @@ easier to correctly understand the requirements:
 
 \begin{itemize}
 
-\item Stoichiometry:  Is the relationship between reactants and products in chemical reactions.
-\item Chemical reaction: Is a process that leads to the chemical transformation of one set of chemical substances to another.
-\item Reactant: A substance that takes part in and undergoes change during a reaction.
-\item Product:  Is the substance formed from chemical reactions.
-\item Coefficients: Is the number of molecules (or atoms) involved in the reaction.
-\item Mole ratio:  Is ​the ratio between the amounts in moles of any two compounds involved in a chemical reaction.
-\item Molecular weight (Molar mass) :  A measure of the sum of the atomic weight values of the atoms in a molecule. 
-\item Molecule: A chemical reactant or product consist of chemical element with more than one atom.
+\item Stoichiometry: Is the relationship between reactants and products in
+  chemical reactions.
+\item Chemical reaction: Is a process that leads to the chemical transformation
+  of one set of chemical substances to another.
+\item Reactant: A substance that takes part in and undergoes change during a
+  reaction.
+\item Product: Is the substance formed from chemical reactions.
+\item Coefficients: Is the number of molecules (or atoms) involved in the
+  reaction.
+\item Mole ratio: Is the ratio between the amounts in moles of any two compounds
+  involved in a chemical reaction.
+\item Molecular weight (Molar mass): A measure of the sum of the atomic weight
+  values of the atoms in a molecule.
+\item Molecule: A chemical reactant or product consist of chemical element with
+  more than one atom.
 \item Compound: Molecule made up of two or more elements.
 \end{itemize}
 
@@ -325,15 +356,17 @@ includes the following elements:
 
 \subsubsection{Goal Statements}
 
-\noindent Given unbalanced chemical reaction with sets of reactants and products , the goal statement are:
+\noindent Given unbalanced chemical reaction with sets of reactants and
+products, the goal statement are:
 
 \begin{itemize}
-\item[GS\refstepcounter{goalnum}\thegoalnum \label{G1}:] Balance the chemical reaction.
-\item[GS\refstepcounter{goalnum}\thegoalnum \label{G2}:] Get the mass of one of unknown reactant.
+\item[GS\refstepcounter{goalnum}\thegoalnum \label{G1}:] Balance the chemical
+  reaction.
+\item[GS\refstepcounter{goalnum}\thegoalnum \label{G2}:] Get the mass of one of
+  unknown reactant.
 \end{itemize}
 
 \subsection{Solution Characteristics Specification}
-
 
 The instance models that govern SMMP are presented in
 Subsection~\ref{sec_instance}.  The information to understand the meaning of the
@@ -344,19 +377,29 @@ models can be verified.
 
 This section simplifies the original problem and helps in developing the
 theoretical model by filling in the missing information for the physical
-system. The numbers given in the square brackets refer to the  type definition[TD], theoretical model
-[T], general definition [GD], data definition [DD], instance model [IM], or
-likely change [LC], in which the respective assumption is used.
+system. The numbers given in the square brackets refer to the type
+definition[TD], theoretical model [T], general definition [GD], data definition
+[DD], instance model [IM], or likely change [LC], in which the respective
+assumption is used.
 
 \begin{itemize}
 
-\item[A\refstepcounter{assumpnum}\theassumpnum \label{Two reactants}:] Chemical reaction with two chemical reactants.
-\item[A\refstepcounter{assumpnum}\theassumpnum \label{reactant compound}:] Chemical reactant could be single element, molecule or Compound with two elements.
-\item[A\refstepcounter{assumpnum}\theassumpnum \label{product compound}:] Chemical product could be single element, molecule or compound with two elements.
-\item[A\refstepcounter{assumpnum}\theassumpnum \label{Known mass}:] Known mass of one chemical reactant.
-\item[A\refstepcounter{assumpnum}\theassumpnum \label{Mass unit}:] Known mass entered in g unit.
-\item[A\refstepcounter{assumpnum}\theassumpnum \label{Known molecular weight}:] Known molecular weight for both chemical reactants.
-\item[A\refstepcounter{assumpnum}\theassumpnum \label{Molecular weight unit}:] Known molecular weight entered in g/mole unit. 
+\item[A\refstepcounter{assumpnum}\theassumpnum \label{Two reactants}:] Chemical
+  reaction with two chemical reactants.
+\item[A\refstepcounter{assumpnum}\theassumpnum \label{reactant compound}:]
+  Chemical reactant could be single element, molecule or Compound with two
+  elements.
+\item[A\refstepcounter{assumpnum}\theassumpnum \label{product compound}:]
+  Chemical product could be single element, molecule or compound with two
+  elements.
+\item[A\refstepcounter{assumpnum}\theassumpnum \label{Known mass}:] Known mass
+  of one chemical reactant.
+\item[A\refstepcounter{assumpnum}\theassumpnum \label{Mass unit}:] Known mass
+  entered in g unit.
+\item[A\refstepcounter{assumpnum}\theassumpnum \label{Known molecular weight}:]
+  Known molecular weight for both chemical reactants.
+\item[A\refstepcounter{assumpnum}\theassumpnum \label{Molecular weight unit}:]
+  Known molecular weight entered in g/mole unit.
 
 \end{itemize}
 
@@ -364,20 +407,21 @@ likely change [LC], in which the respective assumption is used.
 
 This section focuses on the general variable's types that SMMP is based on.  
 \begin{itemize}
-\item[TD\refstepcounter{typenum}\thetypenum \label{elementT}:] ElementT = $\forall$ e $\in$ set of chemical element.
-\item[TD\refstepcounter{typenum}\thetypenum \label{MoleculeT}:] MoleculeT = tuple of (number : $\mathbb{N}$ , element : ElementT).
-\item[TD\refstepcounter{typenum}\thetypenum \label{CompoundT}:]  CompoundT =  tuple of (element1, element2 : MoleculeT).
-\item[TD\refstepcounter{typenum}\thetypenum \label{ChemicalEqT}:] ChemicalEqT = tuple of  (coefficient1, coefficient2 : 
-$\mathbb{N}$ , Compound1 , Compound2 : CompoundT). 
-
+\item[TD\refstepcounter{typenum}\thetypenum \label{elementT}:] ElementT =
+  $\forall$ e $\in$ set of chemical element.
+\item[TD\refstepcounter{typenum}\thetypenum \label{MoleculeT}:] MoleculeT =
+  tuple of (number : $\mathbb{N}$ , element : ElementT).
+\item[TD\refstepcounter{typenum}\thetypenum \label{CompoundT}:] CompoundT =
+  tuple of (element1, element2 : MoleculeT).
+\item[TD\refstepcounter{typenum}\thetypenum \label{ChemicalEqT}:] ChemicalEqT =
+  tuple of (coefficient1, coefficient2 : $\mathbb{N}$ , Compound1 , Compound2 :
+  CompoundT).
 
 \end{itemize}
 
-
-
 \subsubsection{Theoretical Models}\label{sec_theoretical}
 
-This section focuses on the general equations and laws that SMMP is based on.  
+This section focuses on the general equations and laws that SMMP is based on.
 
 ~\newline
 
@@ -393,7 +437,9 @@ This section focuses on the general equations and laws that SMMP is based on.
   \hline
   Equation&  $ \sum $ mass for R =  $\sum$ mass for P.  \\
   \hline
-  Description & The above equation states that there is no change in total mass occurs in a chemical reaction. The total number of    products  mass is equal to the total number of reactants mass.\\ 
+  Description & The above equation states that there is no change in total mass
+                occurs in a chemical reaction. The total number of    products
+                mass is equal to the total number of reactants mass.\\ 
    
                   \hline
   Source &
@@ -437,7 +483,9 @@ Symbol & -\\
   \hline
   Equation & molecule\_atoms\_count (m) =  m.number.\\
   \hline
-  Description & molecule\_atoms\_count (m) is a function that takes the molecule and return number of atoms in a molecule used in chemical reaction. \\
+  Description & molecule\_atoms\_count (m) is a function that takes the molecule
+                and return number of atoms in a molecule used in chemical
+                reaction. \\
     & Where m is a molecule.\\ 
   & m.number is molecule's atoms number . \\ 
   \hline
@@ -471,7 +519,9 @@ Symbol & -\\
   \hline
   Equation& compound\_atoms\_count(c) =  molecule\_atoms\_count (m1) +  molecule\_atoms\_count (m2).\\
   \hline
-  Description &  compound\_atoms\_count(c) is a function that takes molecule1 and molecule2, count the number of atoms in both then return the total number of atoms in compound. \\
+  Description &  compound\_atoms\_count(c) is a function that takes molecule1
+                and molecule2, count the number of atoms in both then return the
+                total number of atoms in compound. \\
   & Where c is the compound.\\ 
   & m1 is the first molecule in the compound. \\ 
   & m2 is the second molecule in the compound. \\
@@ -501,9 +551,14 @@ Symbol & -\\
 % \hline
   SI Units & -\\
   \hline
-  Equation& chemicalEq\_atoms\_count(eq) = coefficient1 $\times$ compound\_atoms\_count(c1) + coefficient2 $\times$ compound\_atoms\_count(c2).\\
+  Equation& chemicalEq\_atoms\_count(eq) = coefficient1 $\times$
+            compound\_atoms\_count(c1) + coefficient2 $\times$
+            compound\_atoms\_count(c2).\\
   \hline
-  Description &  chemicalEq\_atoms\_count(eq) is a function that takes one side of a chemical reaction and count the number of atoms in that side. \\
+  Description &  chemicalEq\_atoms\_count(eq) is a function that takes one side
+                of a chemical reaction and count the number of atoms in that
+                side. \\
+
   & Where eq is the one side of chemical reaction.\\ 
   & compound is reactant or product used in the chemical reaction. \\ 
   & coefficient is the number preceding the compound. \\
@@ -536,7 +591,10 @@ Symbol & mw\\
   \hline
   Equation& mw = $\sum$ atomic weights $\times$ molecule atoms \\
   \hline
-  Description & $mw$ is the molecular weight of a compound.  It is computed by multiplying the atomic weight for the molecule given in periodic table with the amount atoms of molecule then get the total for all molecule atoms forming single compound. \\ 
+  Description & $mw$ is the molecular weight of a compound.  It is computed by
+                multiplying the atomic weight for the molecule given in periodic
+                table with the amount atoms of molecule then get the total for
+                all molecule atoms forming single compound. \\ 
   & Where atomic weights is the weight for single atom of molecule taken from periodic table.\\
                & molecule atoms is how many atoms this molecule use to form a compound.\\
  
@@ -570,7 +628,9 @@ Symbol &$ - $\\
   \hline
   Description &  coefficient of R2 is the coefficient for unknown reactant.\\
                & coefficient of R1 is the coefficient for known reactant.\\
-               & The above equation gives the amount of mole ratio between two reactants by dividing the coefficient amount  of unknown mass reactant with coefficient number of known mass reactant. \\
+               & The above equation gives the amount of mole ratio between two
+                 reactants by dividing the coefficient amount  of unknown mass
+                 reactant with coefficient number of known mass reactant. \\
 
   \hline
   Sources& \cite{Mole_ratio}. \\
@@ -596,7 +656,6 @@ The goals ~\ref{G1} and ~\ref{G2} are solved by ~\ref{sec_instance}.
 
 %Instance Model 1
 
-
 \noindent
 \begin{minipage}{\textwidth}
 \renewcommand*{\arraystretch}{1.5}
@@ -609,9 +668,13 @@ The goals ~\ref{G1} and ~\ref{G2} are solved by ~\ref{sec_instance}.
   \hline
   Input &  Unbalanced chemical reaction . \\
   \hline
-  Output &  Balanced Chemical reaction   = $\sum$ chemicalEq\_atoms\_count (eq1) = $\sum$ chemicalEq\_atoms\_count (eq2). \\
+  Output &  Balanced Chemical reaction   = $\sum$ chemicalEq\_atoms\_count (eq1)
+           = $\sum$ chemicalEq\_atoms\_count (eq2). \\
   \hline
-  Description& Balance a chemical reaction is done by adjusting the coefficient amount used in unbalanced chemical reaction. Where the total atoms for all reactants used in the equation is equal to total atoms for all products. This is done by:\\ &
+  Description& Balance a chemical reaction is done by adjusting the coefficient
+               amount used in unbalanced chemical reaction. Where the total
+               atoms for all reactants used in the equation is equal to total
+               atoms for all products. This is done by:\\ &
   1- Count the atoms of each side of the chemical reaction. \\ &
    2- Use coefficients; place them in front of the compounds as needed.\\ 
   
@@ -641,7 +704,8 @@ The goals ~\ref{G1} and ~\ref{G2} are solved by ~\ref{sec_instance}.
   \hline
   Description& m is the substance mass.\\
                 & mw is the substance molecular weight.\\
-               & The above equation gives the amount of mole for particular substance by dividing the mass amount  with
+               & The above equation gives the amount of mole for particular
+                 substance by dividing the mass amount  with
                 molecular weight. \\
   \hline
   Sources& \cite{Mass_mole} \\
@@ -669,7 +733,8 @@ The goals ~\ref{G1} and ~\ref{G2} are solved by ~\ref{sec_instance}.
   \hline
   Description& mol of R1 is the mole amount for known reactant.\\
                  & mole ratio is the mole ratio between R1 and R2.\\
-                & The above equation gives the amount of mole for R2 substance by dividing the mole amount  of R1
+                & The above equation gives the amount of mole for R2 substance
+                  by dividing the mole amount  of R1
                 with the mole ratio. \\
 
   \hline
@@ -707,8 +772,6 @@ The goals ~\ref{G1} and ~\ref{G2} are solved by ~\ref{sec_instance}.
   \hline
 \end{tabular}
 \end{minipage}\\
-
-
 
 
 \subsubsection{Input Data Constraints} \label{sec_DataConstraints}    
@@ -772,15 +835,17 @@ qualities that the software is expected to exhibit.
 
 \noindent \begin{itemize}
 
-\item[R\refstepcounter{reqnum}\thereqnum \label{R_Inputs}:] The system will use the following inputs:\\
+\item[R\refstepcounter{reqnum}\thereqnum \label{R_Inputs}:] The system will use
+  the following inputs:\\
 1- Unbalanced chemical reaction.\\
 2- Mass of R1.\\
 3- Molecular weight for R1 , R2.\\
 
+\item[R\refstepcounter{reqnum}\thereqnum \label{R_OutputInputs}:]  The system
+  will produce the mass amount for R2. \\
 
-\item[R\refstepcounter{reqnum}\thereqnum \label{R_OutputInputs}:]  The system will produce the mass amount for R2. \\
-
-\item[R\refstepcounter{reqnum}\thereqnum \label{R_Calculate}:] The system needs to calculate the followings:\\
+\item[R\refstepcounter{reqnum}\thereqnum \label{R_Calculate}:] The system needs
+  to calculate the followings:\\
 1- number of atoms used in each reactant and product.\\
 2- Coefficients needed for balance chemical reaction.\\
 3- Mole  amount for R1.\\
@@ -805,10 +870,14 @@ This section provides the non-functional requirements, the qualities that the so
 expected to exhibit.\\
 
 \noindent \begin{itemize}
-\item[NF\refstepcounter{nfreqnum}\thenfreqnum \label{Correct}:]  SMMP provides a correct Solution.\\
-\item[NF\refstepcounter{nfreqnum}\thenfreqnum \label{Verify}:]  The ability to test and verify the system.\\
-\item[NF\refstepcounter{nfreqnum}\thenfreqnum \label{Understandability}:]  The system is understandable for novel users without any ambiguities.\\
-\item[NF\refstepcounter{nfreqnum}\thenfreqnum \label{Usability}:]  The system could be used for different applications and modified easily.\\
+\item[NF\refstepcounter{nfreqnum}\thenfreqnum \label{Correct}:]  SMMP provides a
+  correct Solution.\\
+\item[NF\refstepcounter{nfreqnum}\thenfreqnum \label{Verify}:]  The ability to
+  test and verify the system.\\
+\item[NF\refstepcounter{nfreqnum}\thenfreqnum \label{Understandability}:]  The
+  system is understandable for novel users without any ambiguities.\\
+\item[NF\refstepcounter{nfreqnum}\thenfreqnum \label{Usability}:]  The system
+  could be used for different applications and modified easily.\\
 
 \end{itemize}
 
@@ -816,10 +885,10 @@ expected to exhibit.\\
 
 \noindent \begin{itemize}
 
-\item[LC\refstepcounter{lcnum}\thelcnum\label{Molecular weight}:] The system may calculate the molecular weight of the reactants.
-\item[LC\refstepcounter{lcnum}\thelcnum\label{balance}:] The system may ask the user to enter balance chemical reaction.
-
-
+\item[LC\refstepcounter{lcnum}\thelcnum\label{Molecular weight}:] The system may
+  calculate the molecular weight of the reactants.
+\item[LC\refstepcounter{lcnum}\thelcnum\label{balance}:] The system may ask the
+  user to enter balance chemical reaction.
 
 \end{itemize}
 
@@ -827,7 +896,8 @@ expected to exhibit.\\
 
 \noindent \begin{itemize}
 
-\item[ULC\refstepcounter{ulcnum}\thelcnum\label{Units}:] The units used in the system will not likely to be change.
+\item[ULC\refstepcounter{ulcnum}\thelcnum\label{Units}:] The units used in the
+  system will not likely to be change.
 
 \end{itemize}
 
@@ -836,13 +906,13 @@ expected to exhibit.\\
 The purpose of the traceability matrices is to provide easy references on what
 has to be additionally modified if a certain component is changed.  Every time a
 component is changed, the items in the column of that component that are marked
-with an ``X'' may have to be modified as well. Table~\ref{Table:A_trace} shows the dependencies of theoretical models,
-general definitions, data definitions, instance models, and likely changes on
-the assumptions. Table~\ref{Table:trace} shows the
-dependencies of theoretical models, general definitions, data definitions, and
-instance models with each other. Table~\ref{Table:R_trace} shows the
-dependencies of instance models, requirements, and data constraints on each
-other. 
+with an ``X'' may have to be modified as well. Table~\ref{Table:A_trace} shows
+the dependencies of theoretical models, general definitions, data definitions,
+instance models, and likely changes on the assumptions. Table~\ref{Table:trace}
+shows the dependencies of theoretical models, general definitions, data
+definitions, and instance models with each other. Table~\ref{Table:R_trace}
+shows the dependencies of instance models, requirements, and data constraints on
+each other.
 
 \afterpage{
 \begin{table}[h!]
