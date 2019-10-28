@@ -17,8 +17,8 @@
 
 \begin{document}
 
-\title{Project Title: System Verification and Validation Plan for \progname{}} 
-\author{Author Name}
+\title{System Verification and Validation Plan  for Stoichiometry Mass-Mass Program } 
+\author{Deemah Alomair}
 \date{\today}
 	
 \maketitle
@@ -30,18 +30,13 @@
 \begin{tabularx}{\textwidth}{p{3cm}p{2cm}X}
 \toprule {\bf Date} & {\bf Version} & {\bf Notes}\\
 \midrule
-Date 1 & 1.0 & Notes\\
-Date 2 & 1.1 & Notes\\
+28/10/2019 & 1.0 & First version of document\\
 \bottomrule
 \end{tabularx}
 
 \newpage
 
 \tableofcontents
-
-\listoftables
-
-\listoffigures
 
 \newpage
 
@@ -53,192 +48,246 @@ Date 2 & 1.1 & Notes\\
   \textbf{symbol} & \textbf{description}\\
   \midrule 
   T & Test\\
+  SRS & Software Requirements Specification\\
+  SMMP & Stoichiometry Mass-Mass Program \\
+  R & Functional requirement\\
+  NF & Non-functional requirement\\
   \bottomrule
 \end{tabular}\\
 
-\wss{symbols, abbreviations or acronyms -- you can simply reference the SRS
-  tables, if appropriate}
 
 \newpage
 
 \pagenumbering{arabic}
 
-This document ... \wss{provide an introductory blurb and roadmap of the
-  Verification and Validation plan}
-
 \section{General Information}
+
+This document is to build verification and validation plan for Stoichiometry Mass-Mass Program and provide description about the testing that will be carried out on the system. The main goal of this document is to check whether SMMP meets the SRS and fulfill its intended purpose. This document will be used as the reference and guidance for testing SMMP.
 
 \subsection{Summary}
 
-\wss{Say what software is being tested.  Give its name and a brief overview of
-  its general functions.}
+Stoichiometry Mass-Mass Program is a software that convert unbalanced chemical reaction to balanced one. Then do some necessary calculations to get the mass of one of the reactants involved in that chemical reaction.
 
 \subsection{Objectives}
 
-\wss{State what is intended to be accomplished.  The objective will be around
-  the qualities that are most important for your project.  You might have
-  something like: ``build confidence in the software correctness,''
-  ``demonstrate adequate usability.'' etc.  You won't list all of the qualities,
-  just those that are most important.}
+The objectives of the verification and validation plan is to ensure that SMMP is Reliable. In most cases it provides correct answer and behave as intended. In addition, usability because this software may be used by chemistry student who has less experiences in dealing with computer software. Maintainability is also need to be achieved because this is the first draft of the software and continues changes may be done in next versions.
 
 \subsection{Relevant Documentation}
 
-\wss{Reference relevant documentation.  This will definitely include your SRS}
+Relevant Documents that need to be visited while reading this document include the following:\\
 
+ SRS, which can be found  \href{https://github.com/deemaalomair1/CAS741_project/tree/master/docs/SRS}{here}
+ 
 \section{Plan}
 	
 \subsection{Verification and Validation Team}
 
-\wss{Probably just you.  :-)}
+The test team has one member: Deemah Alomair 
 
 \subsection{SRS Verification Plan}
 
-\wss{List any approaches you intend to use for SRS verification.  This may just
-  be ad hoc feedback from reviewers, like your classmates, or you may have
-  something more rigorous/systematic in mind..}
+SRS Verification Plan will include a feedback from the domain expert, secondary reviewer and Dr.Smith.
 
 \subsection{Design Verification Plan}
 
-\wss{Plans for design verification}
+Design Verification Plan will include a feedback from the domain expert, secondary reviewer and Dr.Smith. 
 
 \subsection{Implementation Verification Plan}
 
-\wss{You should at least point to the tests listed in this document and the unit
-  testing plan.}
-
-\wss{In this section you would also give any details of any plans for static verification of
-  the implementation.  Potential techniques include code walkthroughs, code
-  inspection, static analyzers, etc.}
+Implementation Verification Plan will include the followings:
+\begin{itemize}
+\item Dynamic and automatic testing that includes unit testing for each individual function and coverage testing.
+\item  Linters will be considered throughout the implementation of SMMP.
+\item Parallel testing. 
+\item Code walkthrough for SMMP will be carried out after the implementation by the domain expert and Dr.Smith.
+\end{itemize}
 
 \subsection{Software Validation Plan}
-
-\wss{If there is any external data that can be used for validation, you should
-  point to it here.  If there are no plans for validation, you should state that
-  here.}
+N.A
 
 \section{System Test Description}
-	
+
+This section lists the system tests to be performed to verify whether or not the
+program fulfills the functional requirements and to test how well it meets the
+non-functional requirements. Note that some of the tests for the functional
+requirements are unit tests.
+
 \subsection{Tests for Functional Requirements}
 
-\wss{Subsets of the tests may be in related, so this section is divided into
-  different areas.  If there are no identifiable subsets for the tests, this
-  level of document structure can be removed.}
+\subsubsection{Input Tests}
 
-\wss{Include a blurb here to explain why the subsections below
-  cover the requirements.  References to the SRS would be good.}
-
-\subsubsection{Area of Testing1}
-
-\wss{It would be nice to have a blurb here to explain why the subsections below
-  cover the requirements.  References to the SRS would be good.  If a section
-  covers tests for input constraints, you should reference the data constraints
-  table in the SRS.}
-		
-\paragraph{Title for Test}
+\paragraph{Input constrains tests}
 
 \begin{enumerate}
 
-\item{test-id1\\}
+\item{\bf T1: Mass value test\\}
 
-Control: Manual versus Automatic
+Control:  Functional, dynamic, automatic.
 					
-Initial State: 
+Initial State: Not Applicable.
 					
-Input: 
+Input:  -7.
 					
-Output: \wss{The expected result for the given inputs}
+Output: Error message indicates that entered mass value should be greater than 0.
 
-Test Case Derivation: \wss{Justify the expected value given in the Output field}
+Test Case Derivation: The expected mass value is greater than 0. 
 					
-How test will be performed: 
-					
-\item{test-id2\\}
+How test will be performed: Automatic unit testing. 
 
-Control: Manual versus Automatic
-					
-Initial State: 
-					
-Input: 
-					
-Output: \wss{The expected result for the given inputs}
+\item{\bf T2: Mass format test\\}
 
-Test Case Derivation: \wss{Justify the expected value given in the Output field}
+Control:  Functional, dynamic, automatic.
+					
+Initial State: Not Applicable.
+					
+Input:  $H_2O$.
+					
+Output: Error message indicates that entered mass value should be numeric.
 
-How test will be performed: 
+Test Case Derivation: The expected entered mass value is a positive number.
+					
+How test will be performed: Automatic unit testing.
 
+\item{\bf T3: Chemical reaction format test\\}
+
+Control:  Functional, dynamic, automatic.
+					
+Initial State: Not Applicable.
+					
+Input: $H_2O = 2$ .
+					
+Output: Error message indicates that this is not a correct chemical reaction format. 
+
+Test Case Derivation: The expected entered chemical reaction is set of reactants and products like: $NaOH + H_2SO_4 \rightarrow H_2O + NA_2SO_4$
+					
+How test will be performed: Automatic unit testing.
+ 
 \end{enumerate}
 
-\subsubsection{Area of Testing2}
+\subsubsection{Output Tests}
 
-...
+\paragraph{Output constrains tests}
+
+\begin{enumerate}
+
+\item{\bf T4: Result test\\}
+
+Control:  Functional, dynamic, automatic.
+					
+Initial State: Not Applicable.
+					
+Input: chemical reaction : $NaOH + H_2SO_4 \rightarrow H_2O + NA_2SO_4$\\
+mass of known reactant : 3.10 g.\\
+name  of known reactant: $H_2SO_4$
+				
+Output: mass = 2.53 g.
+
+Test Case Derivation: The expected value of the mass  or error message otherwise.
+					
+How test will be performed: coverage testing , parallel testing .
+
+\item{\bf T5: Chemical reaction balancing test\\}
+
+Type: Functional, dynamic, automatic.
+					
+Initial State: Not Applicable.
+					
+Input: $ N_2 + 3H_2 \rightarrow NH_3 $ 
+					
+Output: $ N_2 + 3H_2 \rightarrow 2NH_3 $ .
+
+Test Case Derivation: The expected balance equation or error message otherwise.
+
+How test will be performed: Parallel testing.
+
+\end{enumerate}
 
 \subsection{Tests for Nonfunctional Requirements}
 
-\wss{The nonfunctional requirements for accuracy will likely just reference the
-  appropriate functional tests from above.  The test cases should mention
-  reporting the relative error for these tests.}
 
-\wss{Tests related to usability could include conducting a usability test and
-  survey.}
-
-\subsubsection{Area of Testing1}
+\subsubsection{Usability}
 		
-\paragraph{Title for Test}
 
 \begin{enumerate}
 
-\item{test-id1\\}
+\item{\bf T6: Usability testing\\}
 
-Type: 
+Type: Nonfunctional,Dynamic, Manual.
 					
-Initial State: 
+Initial State:  Not Applicable.
 					
-Input/Condition: 
+Input/Condition:  Unbalanced chemical reaction/ mass of one reactant.
 					
-Output/Result: 
+Output/Result:  Second reactant mass.
 					
-How test will be performed: 
+How test will be performed: Ask domain expert to use the system.
 					
-\item{test-id2\\}
-
-Type: Functional, Dynamic, Manual, Static etc.
-					
-Initial State: 
-					
-Input: 
-					
-Output: 
-					
-How test will be performed: 
 
 \end{enumerate}
 
-\subsubsection{Area of Testing2}
+\subsubsection{Reliabilty}
 
-...
 
+\begin{enumerate}
+
+\item{\bf T7: Reliability testing\\}
+
+Type: Nonfunctional,Dynamic, Manual.
+					
+Initial State:  Not Applicable.
+					
+Input/Condition:  Unbalanced chemical reaction/ mass of one reactant.
+					
+Output/Result:  Second reactant mass.
+					
+How test will be performed: using the system with different inputs and measuring the percentage of correct answers . 
+\end{enumerate}
+
+\subsubsection{Maintainability}
+
+
+\begin{enumerate}
+
+\item{\bf T8: Maintainability testing\\}
+
+Type: Nonfunctional,Dynamic, Manual.
+					
+Initial State:  Not Applicable.
+					
+Input/Condition:  Existing SMMP system.
+					
+Output/Result:  New version of SMMP.
+					
+How test will be performed: Try to add new feature or fix some constrains and observe system reaction.
+
+\end{enumerate}
 \subsection{Traceability Between Test Cases and Requirements}
+A trace between system tests and requirements is provided in 
+\hyperref[tab:reqtrace]{Table~\ref*{tab:reqtrace}}.
 
-\wss{Provide a table that shows which test cases are supporting which
-  requirements.}
+\begin{table}[h!]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|}
+\hline
+	& T1 & T2 & T3 & T4 & T5 & T6 & T7 &T8  \\
+\hline
+R1  & X&X & X& & & & &  \\ \hline
+R2  & & & &X & X& & &   \\ \hline
+R3  & & & & & X& & &   \\ \hline
+R4  &X & X& X& X&X & & &  \\ \hline
+NF1 & & & &X & X& & X&   \\ \hline
+NF2   & X& X& X&X & X& X& &  \\ \hline
+NF3   & & & & & & X& &  \\ \hline
+NF4   & & & & & & & &X  \\ \hline
+\hline
+\end{tabular}
+\caption{Traceability Matrix Showing the Connections Between Requirements and system tests}
+\label{tab:reqtrace}
+\end{table}
 				
 \bibliographystyle{plainnat}
 
 \bibliography{SRS}
 
-\newpage
-
-\section{Appendix}
-
-This is where you can place additional information.
-
-\subsection{Symbolic Parameters}
-
-The definition of the test cases will call for SYMBOLIC\_CONSTANTS.
-Their values are defined in this section for easy maintenance.
-
-\subsection{Usability Survey Questions?}
-
-\wss{This is a section that would be appropriate for some projects.}
 
 \end{document}
