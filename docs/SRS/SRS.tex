@@ -157,7 +157,6 @@ literature and with existing documentation for stoichiometry mass-mass program. 
 \midrule 
 $m$ & \si[per-mode=symbol] {\gram} & mass.\\
 $mw$ & \si[per-mode=symbol] {\gram/\mol} & molecular weight.\\ 
- 
 \bottomrule
 \end{longtable*}
 
@@ -190,16 +189,11 @@ $mw$ & \si[per-mode=symbol] {\gram/\mol} & molecular weight.\\
   \caption{ Abbreviations and Acronyms}
  \end{table}
 
-
 \newpage
 
 \pagenumbering{arabic}
 
-
-
 \section{Introduction}
-
-
 
 \subsection{Purpose of Document}
 The purpose of this document is to describe the requirements for Stoichiometry Mass-Mass Program. A software product that will
@@ -257,7 +251,7 @@ SMMP is mostly self-contained. The only external interaction is through the user
 \item Detect data type mismatch, such as a string of characters instead of a
   floating point number.
 \item Determine if the inputs satisfy the required physical and software constraints.
-\item Produce an error message in case input does not satisfy physical and software constraints.
+\item Produce an error message in case  input does not satisfy physical and software constraints.
 \item Do the necessary calculations to get the final result.
 \item Display the result to the end user.
 \end{itemize}
@@ -284,8 +278,6 @@ SMMP is intended to solve  Mass-Mass Stoichiometry problem in any chemical react
 
 \subsubsection{Terminology and  Definitions}
 
-
-
 This subsection provides a list of terms that are used in the subsequent
 sections and their meaning, with the purpose of reducing ambiguity and making it
 easier to correctly understand the requirements:
@@ -301,7 +293,6 @@ easier to correctly understand the requirements:
 \item Molecular weight (Molar mass) :  A measure of the sum of the atomic weight values of the atoms in a molecule. 
 \item Molecule: A chemical reactant or product consist of chemical element with more than one atom.
 \item Compound: Molecule made up of two or more elements.
-
 \end{itemize}
 
 \subsubsection{Physical System Description} \label{sec_phySystDescrip}
@@ -327,7 +318,7 @@ includes the following elements:
  \end{center}
  \end{figure}
 
-\subsubsection{Goal Statements}
+\subsubsection{Goal Statements}\label{goals}
 
 \noindent Given unbalanced chemical reaction with sets of reactants and products , the goal statement are:
 
@@ -996,7 +987,7 @@ This section provides the non-functional requirements, the qualities that the so
 expected to exhibit.\\
 
 \noindent \begin{itemize}
-\item[NF\refstepcounter{nfreqnum}\thenfreqnum \label{Accuracy}:] The ability to provide a correct Solution.\\
+\item[NF\refstepcounter{nfreqnum}\thenfreqnum \label{Accuracy}:]  The ability to provide a correct Solution.\\
 \item[NF\refstepcounter{nfreqnum}\thenfreqnum \label{Verify}:]  The ability to test and verify the system.\\
 \item[NF\refstepcounter{nfreqnum}\thenfreqnum \label{Understandability}:]  The system is understandable for novel users without any ambiguities.\\
 \item[NF\refstepcounter{nfreqnum}\thenfreqnum \label{Usability}:]  The system could be used for different applications and modified easily.\\
