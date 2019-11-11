@@ -5,7 +5,7 @@
 \usepackage{hyperref}
 \hypersetup{
     colorlinks,
-    color=black,
+    citecolor=black,
     filecolor=black,
     linkcolor=red,
     urlcolor=blue
@@ -148,7 +148,22 @@ Test Case Derivation: The expected entered mass value is a positive number.
 					
 How test will be performed: Automatic unit testing.
 
-\item{\bf T3: Chemical reaction format test\\}
+\item{\bf T3: Reactant/product format test\\}
+
+Control:  Functional, dynamic, automatic.
+					
+Initial State: Not Applicable.
+					
+Input:  "H2".
+					
+Output: Error message indicates that entered Reactant value should be combination of coefficient + chemical element.
+
+Test Case Derivation: The expected entered reactant value is positive coefficient + chemical element like : "2H" , "$2H_2O$"
+					
+How test will be performed: Automatic unit testing.
+
+
+\item{\bf T4: Chemical reaction format test\\}
 
 Control:  Functional, dynamic, automatic.
 					
