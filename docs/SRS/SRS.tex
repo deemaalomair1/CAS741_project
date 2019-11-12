@@ -364,8 +364,8 @@ Au,Hg,Tl,Pb,Bi,Po,At,Rn,Fr,Ra,Ac,Th,Pa,U,Np,Pu,Am,Cm,Bk,Cf,Es,Fm,Md,No,Lr,Rf,Db,
 Bh,Hs,Mt,Ds,Rg,Cn,Nh,Fl,Mc,Lv,Ts,Og \}
 \item[TD\refstepcounter{typenum}\thetypenum \label{MoleculeT}:] MoleculeT = tuple of (number : $\mathbb{N}$ , element : ElementT).
 \item[TD\refstepcounter{typenum}\thetypenum \label{CompoundT}:]  CompoundT =   set of MoleculeT.
-\item[TD\refstepcounter{typenum}\thetypenum \label{ChemicalEqT}:] ChemicalEqT = set of (tuple of (coefficient : $\mathbb{N}$ , Compound : CompoundT))
-\item[TD\refstepcounter{typenum}\thetypenum \label{ReactionT}:] ReactionT =  sequence [2] of ChemicalEq.
+\item[TD\refstepcounter{typenum}\thetypenum \label{StoichiometricT}:]  StoichiometricT =   tuple of (coefficient : $\mathbb{N}$ , Compound : CompoundT)
+\item[TD\refstepcounter{typenum}\thetypenum \label{ChemicalEqT}:] ChemicalEqT = set of StoichiometricT \item[TD\refstepcounter{typenum}\thetypenum \label{ReactionT}:] ReactionT =  sequence [2] of ChemicalEq.
 \end{itemize}
 
 
@@ -465,7 +465,7 @@ Symbol & -\\
   Equation & Number-of-Atoms-in-Molecule: MoleculeT  X ElementT $\rightarrow$ $\mathbb{N}$ \\
 
   \hline
-  Description &  Number-of-Atoms-in-Molecule(m,e) $\equiv$ (m.element = e $\rightarrow$ m.number $\vert$ TRUE $\rightarrow$ 0) \\
+  Description &  Number-of-Atoms-in-Molecule(m,e) $\equiv$ (m.element = e $\rightarrow$ m.number $\vert$ m.element $\neq$ e $\rightarrow$ 0) \\
    & Where e is an element $\in$ ElementT  \\
    &  m is an molecule  $\in$  MoleculeT \\
    &  The function will compare the molecule(m) with element(e) if they are equal it returns the number of atoms in that element else it will return 0 \\ 
@@ -508,12 +508,45 @@ Symbol & -\\
   \hline
   Sources& \cite{Molecule:compound} \\
   \hline
+  Ref.\ By &  \ddref{atoms_count_Sc}\\
+  \hline
+  \end{tabular}
+\end{minipage}\\
+
+~\newline
+\noindent
+\begin{minipage}{\textwidth}
+\renewcommand*{\arraystretch}{1.5}
+\begin{tabular}{| p{\colAwidth} | p{\colBwidth}|}
+\hline
+\rowcolor[gray]{0.9}
+Number& DD\refstepcounter{datadefnum}\thedatadefnum \label{atoms_count_Sc}\\
+\hline
+Label& \bf Count number of atoms in Stoichiometric\\
+\hline
+Symbol & -\\
+\hline
+% Units& $Mt^{-3}$\\
+% \hline
+  SI Units & -\\
+  \hline
+  Equation& Number-of-Atoms-in-Stoichiometric: StoichiometricT  X ElementT $\rightarrow$ $\mathbb{N}$\\
+  \hline
+  Description &Number-of-Atoms-in-Stoichiometric(S,e) $\equiv$  (S.coefficient  $\cdot$   Number-of-Atoms-in-Compound(S.Compound,e) ) \\
+   & Where S $\in$ StoichiometricT  \\
+  &  coefficient $\in$ StoichiometricT \\ 
+  & C is the compound $\in$ StoichiometricT \\ 
+  & The function will take the compound(C) and get Number-of-Atoms-in-Compound(C) then multiply it with compound coefficient.\\
+  \hline
+  Sources& \cite{Molecule:compound} \\
+  \hline
   Ref.\ By &  \ddref{atoms_count_Eq}\\
   \hline
   \end{tabular}
 \end{minipage}\\
 
 ~\newline
+
 \noindent
 \begin{minipage}{\textwidth}
 \renewcommand*{\arraystretch}{1.5}
@@ -532,11 +565,11 @@ Symbol & -\\
   \hline
   Equation& Number-of-Atoms-in-ChemicalEq: ChemicalEqT  X ElementT $\rightarrow$ $\mathbb{N}$\\
   \hline
-  Description & Number-of-Atoms-in-ChemicalEq (Ce,e) $\equiv$ + (coeff : N , C : CompoundT  $\vert$ coeff $\wedge$ C $\in$ Ce $\cdot$   Number-of-Atoms-in-Compound (C,e) $\times$ coeff) \\
-  & C is the compound. \\ 
-  & coeff is coefficient.\\
+  Description & Number-of-Atoms-in-ChemicalEq (Ce,e) $\equiv$ + (S : StoichiometricT $\vert$ S $\in$ Ce $\cdot$ Number-of-Atoms-in-Stoichiometric(S,e)) \\
+   & Where S $\in$ StoichiometricT  \\
+  & S $\in$ Ce\\
   & Ce is one side of chemical equation.\\
-  & The function will take each  Compound(C)  $\in$  ChemicalEq(Ce)  and apply number-of-Atoms-in-Compound (C,e) function on it then multiply the result with its coefficient. The function will be applied  to all compound in ChemicalEq then add them together. \\
+  & The function will take each  Stoichiometric(S)  $\in$ ChemicalEq(Ce) and apply number-of-Atoms-in-Stoichiometric(S,e) function on it then add them together. \\
   \hline
   Sources&  \cite{chemicalReaction} \\
   \hline
