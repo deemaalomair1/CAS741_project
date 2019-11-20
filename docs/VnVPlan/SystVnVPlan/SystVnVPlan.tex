@@ -17,7 +17,7 @@
 
 \begin{document}
 
-\title{System Verification and Validation Plan  for Stoichiometry Mass-Mass Program } 
+\title{System Verification and Validation Plan for Stoichiometry Mass-Mass Program } 
 \author{Deemah Alomair}
 \date{\today}
 	
@@ -90,16 +90,28 @@ the following:\\
  SRS, which can be found
 \href{https://github.com/deemaalomair1/CAS741_project/tree/master/docs/SRS}{here}
  
+\wss{Please list all of the documents in your project, even the ones that
+  haven't been written yet.  :-)}
+
 \section{Plan}
-	
+
+\wss{There should generally be text between all section headings.  If there is
+  no text, then you can provide a ``roadmap'' of the section.}
+
 \subsection{Verification and Validation Team}
 
 The test team has one member: Deemah Alomair
+
+\wss{You should also list your classmates and the course instructor.}
 
 \subsection{SRS Verification Plan}
 
 SRS Verification Plan will include a feedback from the domain expert, secondary
 reviewer and Dr.\ Smith.
+
+\wss{I'm looking for more detail here and for the design verification.  Peter
+  has a good start on integrating the plan with the course structure, including
+  using our checklists.}
 
 \subsection{Design Verification Plan}
 
@@ -111,14 +123,17 @@ secondary reviewer and Dr.\ Smith.
 Implementation Verification Plan will include the followings:
 \begin{itemize}
 \item Dynamic and automatic testing that includes unit testing for each
-individual function and coverage testing.
-\item Linters will be considered throughout the implementation of SMMP.
+individual function and coverage testing. \wss{What specific tools?}
+\item Linters will be considered throughout the implementation of
+  SMMP. \wss{What specific tools}
 \item Parallel testing.
 \item Code walkthrough for SMMP will be carried out after the implementation by
-the domain expert and Dr.\ Smith.
+the domain expert and Dr.\ Smith. \wss{Code walkthroughs are a full technique.
+  You should give details, along with a reference.}
 \end{itemize}
 
-\subsection{Software Validation Plan} N.A
+\subsection{Software Validation Plan} N.A \wss{I agree, but you should explain
+  to the reader why this is N.A.}
 
 \section{System Test Description}
 
@@ -141,7 +156,11 @@ Control: Functional, dynamic, automatic.
 					
 Initial State: Not Applicable.
 					
-Input: -7.
+Input: -7. \wss{You should list all of the system level inputs.  Otherwise, the
+  tester will not know what values to enter.  To prevent this document from
+  getting too large, you can use a base case test with your innocuous inputs,
+  and then use a table to show the delta from this base test case to give your
+  erroneous input test cases.}
 					
 Output: Error message indicates that entered mass value should be greater than
 0.
@@ -173,10 +192,11 @@ Initial State: Not Applicable.
 Input: ``H2''.
 					
 Output: Error message indicates that entered Reactant value should be
-combination of coefficient + chemical element.
+combination of coefficient + chemical element. \wss{This error should be caught
+  by a type error.}
 
 Test Case Derivation: The expected entered reactant value is positive
-coefficient + chemical element like : ``2H" , ``$2H_2O$''
+coefficient + chemical element like : ``2H'' , ``$2H_2O$''
 					
 How test will be performed: Automatic unit testing.
 
@@ -187,7 +207,11 @@ Control: Functional, dynamic, automatic.
 					
 Initial State: Not Applicable.
 					
-Input: $"H_2O = 2"$ .
+Input: $"H_2O = 2"$ . \wss{Your inputs imply that you are planning on doing
+  string parsing for your chemical reaction inputs.  I think this might be more
+  work than you are prepared to do.  As we discussed, I think you can use a GUI
+  with drop down menus and edit boxes to enter the parts of the equation.  You
+  can avoid parsing that way.}
 					
 Output: Error message indicates that this is not a correct chemical reaction
 format.
@@ -218,7 +242,8 @@ Output: mass = 2.53 g.
 
 Test Case Derivation: The expected value of the mass or error message otherwise.
 					
-How test will be performed: coverage testing , parallel testing .
+How test will be performed: coverage testing, parallel testing. \wss{This is
+  what kind of test it is, not how it will be performed.  Parallel with what?}
 
 \item{\bf T6: Chemical reaction balancing test\\}
 
@@ -235,6 +260,10 @@ Test Case Derivation: The expected balance equation or error message otherwise.
 How test will be performed: Parallel testing.
 
 \end{enumerate}
+
+\wss{You do not have nearly enough test cases with the actual functionality of
+  your software.  You need multiple test cases to balance an equation and you
+  need multiple test cases to determine the unknown masses.}
 
 \subsection{Tests for Nonfunctional Requirements}
 
@@ -253,11 +282,14 @@ Input/Condition: Unbalanced chemical reaction/ mass of one reactant.
 Output/Result: Second reactant mass.
 					
 How test will be performed: Ask domain expert to use the system then get a
-feedback of the ease of using the system.
+feedback of the ease of using the system. \wss{You need more detail here.  This
+  is not rigorous.  You should think from the perspective of a third party that
+  you give this document and ask to complete the tests.  That third party needs
+  enough information to complete the tests.}
 					
 \end{enumerate}
 
-\subsubsection{Reliabilty}
+\subsubsection{Reliabilty \wss{spell check}}
 
 \begin{enumerate}
 
@@ -272,7 +304,8 @@ Input/Condition: Unbalanced chemical reaction/ mass of one reactant.
 Output/Result: Second reactant mass.
 					
 How test will be performed: using the system with different inputs and measuring
-the percentage of correct answers.
+the percentage of correct answers. \wss{more detail - what inputs?, what
+  outputs? how are the percentages calculated?}
 
 \end{enumerate}
 
@@ -290,8 +323,10 @@ Input/Condition: Existing SMMP system.
 					
 Output/Result: New version of SMMP.
 					
-How test will be performed: Try to add new feature or fix some constrains and
-observe system reaction.
+How test will be performed: Try to add new feature or fix some constrains
+\wss{proof read} and
+observe system reaction.  \wss{How is this going to be measured?  What feature
+  is being added?  Who is adding it?}
 
 \end{enumerate}
 \subsection{Traceability Between Test Cases and Requirements} A trace between
