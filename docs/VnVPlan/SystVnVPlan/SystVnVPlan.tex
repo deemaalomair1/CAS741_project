@@ -55,55 +55,70 @@
   \bottomrule
 \end{tabular}\\
 
-
 \newpage
 
 \pagenumbering{arabic}
 
 \section{General Information}
 
-This document is to build verification and validation plan for Stoichiometry Mass-Mass Program and provide description about the testing that will be carried out on the system. The main goal of this document is to check whether SMMP meets the SRS and fulfill its intended purpose. This document will be used as the reference and guidance for testing SMMP.
+This document is to build verification and validation plan for Stoichiometry
+Mass-Mass Program and provide description about the testing that will be carried
+out on the system. The main goal of this document is to check whether SMMP meets
+the SRS and fulfill its intended purpose. This document will be used as the
+reference and guidance for testing SMMP.
 
 \subsection{Summary}
 
-Stoichiometry Mass-Mass Program is a software that convert unbalanced chemical reaction to balanced one. Then do some necessary calculations to get the mass of one of the reactants involved in that chemical reaction.
+Stoichiometry Mass-Mass Program is a software that convert unbalanced chemical
+reaction to balanced one. Then do some necessary calculations to get the mass of
+one of the reactants involved in that chemical reaction.
 
 \subsection{Objectives}
 
-The objectives of the verification and validation plan is to ensure that SMMP is Reliable. In most cases it provides correct answer and behave as intended. In addition, usability because this software may be used by chemistry student who has less experiences in dealing with computer software. Maintainability is also need to be achieved because this is the first draft of the software and continues changes may be done in next versions.
+The objectives of the verification and validation plan is to ensure that SMMP is
+Reliable. In most cases it provides correct answer and behave as intended. In
+addition, usability because this software may be used by chemistry student who
+has less experiences in dealing with computer software. Maintainability is also
+need to be achieved because this is the first draft of the software and
+continues changes may be done in next versions.
 
 \subsection{Relevant Documentation}
 
-Relevant Documents that need to be visited while reading this document include the following:\\
+Relevant Documents that need to be visited while reading this document include
+the following:\\
 
- SRS, which can be found  \href{https://github.com/deemaalomair1/CAS741_project/tree/master/docs/SRS}{here}
+ SRS, which can be found
+\href{https://github.com/deemaalomair1/CAS741_project/tree/master/docs/SRS}{here}
  
 \section{Plan}
 	
 \subsection{Verification and Validation Team}
 
-The test team has one member: Deemah Alomair 
+The test team has one member: Deemah Alomair
 
 \subsection{SRS Verification Plan}
 
-SRS Verification Plan will include a feedback from the domain expert, secondary reviewer and Dr.Smith.
+SRS Verification Plan will include a feedback from the domain expert, secondary
+reviewer and Dr.\ Smith.
 
 \subsection{Design Verification Plan}
 
-Design Verification Plan will include a feedback from the domain expert, secondary reviewer and Dr.Smith. 
+Design Verification Plan will include a feedback from the domain expert,
+secondary reviewer and Dr.\ Smith.
 
 \subsection{Implementation Verification Plan}
 
 Implementation Verification Plan will include the followings:
 \begin{itemize}
-\item Dynamic and automatic testing that includes unit testing for each individual function and coverage testing.
-\item  Linters will be considered throughout the implementation of SMMP.
-\item Parallel testing. 
-\item Code walkthrough for SMMP will be carried out after the implementation by the domain expert and Dr.Smith.
+\item Dynamic and automatic testing that includes unit testing for each
+individual function and coverage testing.
+\item Linters will be considered throughout the implementation of SMMP.
+\item Parallel testing.
+\item Code walkthrough for SMMP will be carried out after the implementation by
+the domain expert and Dr.\ Smith.
 \end{itemize}
 
-\subsection{Software Validation Plan}
-N.A
+\subsection{Software Validation Plan} N.A
 
 \section{System Test Description}
 
@@ -122,25 +137,26 @@ requirements are unit tests.
 
 \item{\bf T1: Mass value test\\}
 
-Control:  Functional, dynamic, automatic.
+Control: Functional, dynamic, automatic.
 					
 Initial State: Not Applicable.
 					
-Input:  -7.
+Input: -7.
 					
-Output: Error message indicates that entered mass value should be greater than 0.
+Output: Error message indicates that entered mass value should be greater than
+0.
 
-Test Case Derivation: The expected mass value is greater than 0. 
+Test Case Derivation: The expected mass value is greater than 0.
 					
-How test will be performed: Automatic unit testing. 
+How test will be performed: Automatic unit testing.
 
 \item{\bf T2: Mass format test\\}
 
-Control:  Functional, dynamic, automatic.
+Control: Functional, dynamic, automatic.
 					
 Initial State: Not Applicable.
 					
-Input:  "H".
+Input: ``H''.
 					
 Output: Error message indicates that entered mass value should be numeric.
 
@@ -150,30 +166,34 @@ How test will be performed: Automatic unit testing.
 
 \item{\bf T3: Reactant/product format test\\}
 
-Control:  Functional, dynamic, automatic.
+Control: Functional, dynamic, automatic.
 					
 Initial State: Not Applicable.
 					
-Input:  "H2".
+Input: ``H2''.
 					
-Output: Error message indicates that entered Reactant value should be combination of coefficient + chemical element.
+Output: Error message indicates that entered Reactant value should be
+combination of coefficient + chemical element.
 
-Test Case Derivation: The expected entered reactant value is positive coefficient + chemical element like : "2H" , "$2H_2O$"
+Test Case Derivation: The expected entered reactant value is positive
+coefficient + chemical element like : ``2H" , ``$2H_2O$''
 					
 How test will be performed: Automatic unit testing.
 
 
 \item{\bf T4: Chemical reaction format test\\}
 
-Control:  Functional, dynamic, automatic.
+Control: Functional, dynamic, automatic.
 					
 Initial State: Not Applicable.
 					
 Input: $"H_2O = 2"$ .
 					
-Output: Error message indicates that this is not a correct chemical reaction format. 
+Output: Error message indicates that this is not a correct chemical reaction
+format.
 
-Test Case Derivation: The expected entered chemical reaction is set of reactants and products like: $NaOH + H_2SO_4 \rightarrow H_2O + NA_2SO_4$
+Test Case Derivation: The expected entered chemical reaction is set of reactants
+and products like: $NaOH + H_2SO_4 \rightarrow H_2O + NA_2SO_4$
 					
 How test will be performed: Automatic unit testing.
  
@@ -187,17 +207,16 @@ How test will be performed: Automatic unit testing.
 
 \item{\bf T5: Result test\\}
 
-Control:  Functional, dynamic, automatic.
+Control: Functional, dynamic, automatic.
 					
 Initial State: Not Applicable.
 					
-Input: chemical reaction : "$NaOH + H_2SO_4 \rightarrow H_2O + NA_2SO_4$"\\
-mass of known reactant : "3.10"\\
-name  of known reactant: "$H_2SO_4$"
+Input: chemical reaction : "$NaOH + H_2SO_4 \rightarrow H_2O + NA_2SO_4$"\\ mass
+of known reactant : ``3.10''\\ name of known reactant: "$H_2SO_4$"
 				
 Output: mass = 2.53 g.
 
-Test Case Derivation: The expected value of the mass  or error message otherwise.
+Test Case Derivation: The expected value of the mass or error message otherwise.
 					
 How test will be performed: coverage testing , parallel testing .
 
@@ -207,7 +226,7 @@ Type: Functional, dynamic, automatic.
 					
 Initial State: Not Applicable.
 					
-Input: $ N_2 + 3H_2 \rightarrow NH_3 $ 
+Input: $ N_2 + 3H_2 \rightarrow NH_3 $
 					
 Output: $ N_2 + 3H_2 \rightarrow 2NH_3 $ .
 
@@ -219,9 +238,7 @@ How test will be performed: Parallel testing.
 
 \subsection{Tests for Nonfunctional Requirements}
 
-
-\subsubsection{Usability}
-		
+\subsubsection{Usability}		
 
 \begin{enumerate}
 
@@ -229,37 +246,37 @@ How test will be performed: Parallel testing.
 
 Type: Nonfunctional,Dynamic, Manual.
 					
-Initial State:  Not Applicable.
+Initial State: Not Applicable.
 					
-Input/Condition:  Unbalanced chemical reaction/ mass of one reactant.
+Input/Condition: Unbalanced chemical reaction/ mass of one reactant.
 					
-Output/Result:  Second reactant mass.
+Output/Result: Second reactant mass.
 					
-How test will be performed: Ask domain expert to use the system then get a feedback of the ease of using the system.
+How test will be performed: Ask domain expert to use the system then get a
+feedback of the ease of using the system.
 					
-
 \end{enumerate}
 
 \subsubsection{Reliabilty}
-
 
 \begin{enumerate}
 
 \item{\bf T8: Reliability testing\\}
 
-Type: Nonfunctional,Dynamic, Manual.
+Type: Nonfunctional, Dynamic, Manual.
 					
-Initial State:  Not Applicable.
+Initial State: Not Applicable.
 					
-Input/Condition:  Unbalanced chemical reaction/ mass of one reactant.
+Input/Condition: Unbalanced chemical reaction/ mass of one reactant.
 					
-Output/Result:  Second reactant mass.
+Output/Result: Second reactant mass.
 					
-How test will be performed: using the system with different inputs and measuring the percentage of correct answers . 
+How test will be performed: using the system with different inputs and measuring
+the percentage of correct answers.
+
 \end{enumerate}
 
 \subsubsection{Maintainability}
-
 
 \begin{enumerate}
 
@@ -267,17 +284,18 @@ How test will be performed: using the system with different inputs and measuring
 
 Type: Nonfunctional,Dynamic, Manual.
 					
-Initial State:  Not Applicable.
+Initial State: Not Applicable.
 					
-Input/Condition:  Existing SMMP system.
+Input/Condition: Existing SMMP system.
 					
-Output/Result:  New version of SMMP.
+Output/Result: New version of SMMP.
 					
-How test will be performed: Try to add new feature or fix some constrains and observe system reaction.
+How test will be performed: Try to add new feature or fix some constrains and
+observe system reaction.
 
 \end{enumerate}
-\subsection{Traceability Between Test Cases and Requirements}
-A trace between system tests and requirements is provided in 
+\subsection{Traceability Between Test Cases and Requirements} A trace between
+system tests and requirements is provided in
 \hyperref[tab:reqtrace]{Table~\ref*{tab:reqtrace}}.
 
 \begin{table}[h!]
@@ -299,4 +317,5 @@ NF4   & & & & & & & & &X \\ \hline
 \caption{Traceability Matrix Showing the Connections Between Requirements and system tests}
 \label{tab:reqtrace}
 \end{table}
+
 \end{document}
