@@ -39,9 +39,9 @@ urlcolor=cyan          % color of external links
 
 \begin{document}
 
-\title{Module Interface Specification for ...}
+\title{Module Interface Specification for Stoichiometry Mass-Mass Program}
 
-\author{Author Name}
+\author{Deemah Alomair}
 
 \date{\today}
 
@@ -54,8 +54,7 @@ urlcolor=cyan          % color of external links
 \begin{tabularx}{\textwidth}{p{3cm}p{2cm}X}
 \toprule {\bf Date} & {\bf Version} & {\bf Notes}\\
 \midrule
-Date 1 & 1.0 & Notes\\
-Date 2 & 1.1 & Notes\\
+Date 1 & 1.0 & First version of document\\
 \bottomrule
 \end{tabularx}
 
@@ -63,9 +62,8 @@ Date 2 & 1.1 & Notes\\
 
 \section{Symbols, Abbreviations and Acronyms}
 
-See SRS Documentation at \wss{give url}
+See SRS Documentation  \href{https://github.com/deemaalomair1/CAS741_project/tree/master/docs/SRS}{here}
 
-\wss{Also add any additional symbols, abbreviations or acronyms}
 
 \newpage
 
@@ -78,25 +76,22 @@ See SRS Documentation at \wss{give url}
 \section{Introduction}
 
 The following document details the Module Interface Specifications for
-\wss{Fill in your project name and description}
+Stoichiometry Mass-Mass Program
 
 Complementary documents include the System Requirement Specifications
 and Module Guide.  The full documentation and implementation can be
-found at \url{...}.  \wss{provide the url for your repo}
+found \href{https://github.com/deemaalomair1/CAS741_project/tree/master/docs}{here}
 
 \section{Notation}
 
-\wss{You should describe your notation.  You can use what is below as
-  a starting point.}
-
-The structure of the MIS for modules comes from \citet{HoffmanAndStrooper1995},
+The structure of the MIS for modules comes from \cite{Hoffman:Strooper:1995},
 with the addition that template modules have been adapted from
-\cite{GhezziEtAl2003}.  The mathematical notation comes from Chapter 3 of
-\citet{HoffmanAndStrooper1995}.  For instance, the symbol := is used for a
+\cite{Ghezzi:Jazayeri:Mandrioli:2003}.  The mathematical notation comes from Chapter 3 of
+\cite{Hoffman:Strooper:1995}.  For instance, the symbol := is used for a
 multiple assignment statement and conditional rules follow the form $(c_1
 \Rightarrow r_1 | c_2 \Rightarrow r_2 | ... | c_n \Rightarrow r_n )$.
 
-The following table summarizes the primitive data types used by \progname. 
+The following table summarizes the primitive data types used by SMMP. 
 
 \begin{center}
 \renewcommand{\arraystretch}{1.2}
@@ -114,12 +109,25 @@ real & $\mathbb{R}$ & any number in (-$\infty$, $\infty$)\\
 \end{center}
 
 \noindent
-The specification of \progname \ uses some derived data types: sequences, strings, and
+The specification of SMMP  uses some derived data types: sequences, strings, and
 tuples. Sequences are lists filled with elements of the same data type. Strings
 are sequences of characters. Tuples contain a list of values, potentially of
-different types. In addition, \progname \ uses functions, which
+different types. In addition, SMMP  uses functions, which
 are defined by the data types of their inputs and outputs. Local functions are
 described by giving their type signature followed by their specification.
+
+\noindent
+Since chemical reaction is central to SMMP, the following notation
+is introduced in an attempt to simplify the presentation of the MIS.\\
+
+\noindent
+Chemical reaction:\\
+
+$c_1R[0]_1 + c_2R[0]_2 = cc_1R[1]_1 + cc_2R[1]_2$\\
+
+where $R[0]_1$ is reactant with known mass, $c_1$ is the coefficient number associated to this reactant ,
+$R[0]_2$  is reactant with unknown mass, $c_2$ is the coefficient number associated to this reactant , 
+$R[1]_i$ is a product and  $cc_i$ is he coefficient number associated to this product.
 
 \section{Module Decomposition}
 
@@ -135,18 +143,13 @@ The following table is taken directly from the Module Guide document for this pr
 {Hardware-Hiding} & ~ \\
 \midrule
 
-\multirow{7}{0.3\textwidth}{Behaviour-Hiding} & Input Parameters\\
-& Output Format\\
-& Output Verification\\
-& Temperature ODEs\\
-& Energy Equations\\ 
-& Control Module\\
-& Specification Parameters Module\\
+\multirow{4}{0.3\textwidth}{Behaviour-Hiding}  &Input Module \\
+& Atomic Mass Module\\
+&Chemical Reaction Balancing Module\\
+& Mass Calculation Module\\
 \midrule
 
-\multirow{3}{0.3\textwidth}{Software Decision} & {Sequence Data Structure}\\
-& ODE Solver\\
-& Plotting\\
+\multirow{1}{0.3\textwidth}{Software Decision} & GUI Module\\
 \bottomrule
 
 \end{tabular}
@@ -154,26 +157,63 @@ The following table is taken directly from the Module Guide document for this pr
 \label{TblMH}
 \end{table}
 
-\newpage
+
 ~\newpage
 
-\section{MIS of \wss{Module Name}} \label{Module} \wss{Use labels for
-  cross-referencing}
-
-\wss{You can reference SRS labels, such as R\ref{R_Inputs}.}
-
-\wss{It is also possible to use \LaTeX for hypperlinks to external documents.}
+\section{MIS of Input Module} \label{input} 
 
 \subsection{Module}
 
-\wss{Short name for the module}
+Input
 
 \subsection{Uses}
 
+Not Applicable.
 
 \subsection{Syntax}
 
 \subsubsection{Exported Constants}
+None.
+\subsubsection{Exported Types}
+ReactionT = ?
+\subsubsection{Exported Access Programs}
+
+\begin{center}
+\begin{tabular}{p{2cm} p{4cm} p{4cm} p{2cm}}
+\hline
+\textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
+\hline
+{$input_1$} & chemical reaction: \newline ReactionT & - & -   \\
+{$input_2$} & Mass: $\mathbb{R}$ & - & -   \\
+\hline
+\end{tabular}
+\end{center}
+
+\subsection{Semantics}
+
+Not Applicable.
+
+\newpage
+
+\section{MIS of Atomic Mass Module} \label{Atomic Mass} 
+
+\subsection{Module}
+
+Atomic Mass
+
+\subsection{Uses}
+
+Balancing (Section \ref{balancing})
+
+\subsection{Syntax}
+
+\subsubsection{Exported Constants}
+
+None. 
+\subsubsection{Exported Types}
+
+ElementT = ?
+
 
 \subsubsection{Exported Access Programs}
 
@@ -182,7 +222,7 @@ The following table is taken directly from the Module Guide document for this pr
 \hline
 \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
 \hline
-\wss{accessProg} & - & - & - \\
+{Atomic-Mass} & element: ElementT & Atomic-Mass: $\mathbb{R}$ & element $\notin$ ElementT  \\
 \hline
 \end{tabular}
 \end{center}
@@ -191,52 +231,388 @@ The following table is taken directly from the Module Guide document for this pr
 
 \subsubsection{State Variables}
 
-\wss{Not all modules will have state variables.  State variables give the module
-  a memory.}
-
+1. e: ElementT
+\newline 
+2. Atomic-Mass: $\mathbb{R}$
 \subsubsection{Environment Variables}
 
-\wss{This section is not necessary for all modules.  Its purpose is to capture
-  when the module has external interaction with the environment, such as for a
-  device driver, screen interface, keyboard, file, etc.}
+Atomic Mass library file.
 
 \subsubsection{Assumptions}
 
-\wss{Try to minimize assumptions and anticipate programmer errors via
-  exceptions, but for practical purposes assumptions are sometimes appropriate.}
+None.
 
 \subsubsection{Access Routine Semantics}
 
-\noindent \wss{accessProg}():
+\noindent (Atomic Mass):
 \begin{itemize}
-\item transition: \wss{if appropriate} 
-\item output: \wss{if appropriate} 
-\item exception: \wss{if appropriate} 
+\item transition: None.
+\item output:  AtomicMass $\coloneqq$  $\mathbb{R}$
+\item exception: if (e $\notin$ ElementT) $\rightarrow$  no-Atomic-Mass
 \end{itemize}
 
-\wss{A module without environment variables or state variables is unlikely to
-  have a state transition.  In this case a state transition can only occur if
-  the module is changing the state of another module.}
+\subsubsection{Local Functions}
+AtomicMass: ElementT $\rightarrow$ $\mathbb{R}$ 
+\newline
+AtomicMass(e) $\equiv$ ( e= H $\rightarrow$ 1.0079 $\vert$  e= He $\rightarrow$ 4.002 $\vert$...)  
 
-\wss{Modules rarely have both a transition and an output.  In most cases you
-  will have one or the other.}
+\newpage
+
+\section{MIS of Chemical Reaction Balancing Module} \label{balancing} 
+
+\subsection{Template Module}
+
+Balancing
+
+\subsection{Uses}
+
+ Input (Section \ref{input})
+
+\subsection{Syntax}
+
+\subsubsection{Exported Constants}
+
+None.
+
+\subsubsection{Exported Types}
+
+ElementT = $\forall$ e $\in$ set of chemical element = 
+\{ H,He,Li,Be,B,C,N,O,F,Ne,Na,Mg,Al,Si,P,S,Cl,Ar,K,
+Ca,Sc,Ti,V,Cr,Mn,Fe,Co,Ni,Cu,Zn,Ga,Ge,As,Se,Br,Kr,Rb,Sr,Y,Zr,Nb,Mo,Tc,Ru,Rh,Pd,Ag,Cd,In,
+Sn,Sb,Te,I,Xe,Cs,Ba,La,Ce,Pr,Nd,Pm,Sm,Eu,Gd,Tb,Dy,Ho,Er,Tm,Yb,Lu,Hf,Ta,W,Re,Os,Ir,Pt,
+Au,Hg,Tl,Pb,Bi,Po,At,Rn,Fr,Ra,Ac,Th,Pa,U,Np,Pu,Am,Cm,Bk,Cf,Es,Fm,Md,No,Lr,Rf,Db,Sg,
+Bh,Hs,Mt,Ds,Rg,Cn,Nh,Fl,Mc,Lv,Ts,Og \} \\
+\newline 
+MoleculeT = tuple of (number :  $\mathbb{N}$ , element : ElementT).\\
+\newline 
+CompoundT = set of MoleculeT.\\
+\newline 
+StoichiometricT = tuple of (coefficient : N , Compound : CompoundT)\\
+\newline
+ChemicalEqT = set of StoichiometricT\\
+\newline
+ReactionT = sequence [2] of ChemicalEq.\\
+
+\subsubsection{Exported Access Programs}
+
+\begin{center}
+\begin{tabular}{p{2cm} p{4cm} p{4cm} p{2cm}}
+\hline
+\textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
+\hline
+{Molecule's atoms} & Molecule: \newline MoleculeT &  Number-of-Atoms: $\mathbb{N}$  & -  \\
+\hline
+{compound's atoms} & Compound: \newline CompoundT &  Number-of-Atoms: $\mathbb{N}$  & -  \\
+\hline
+{Elements of a compound} & Compound: \newline CompoundT & set of Element: ElementT  & -  \\
+\hline
+{number of atoms in ChemicalEq} & Compound: \newline CompoundT
+\newline coefficient :  $\mathbb{N}$ &  Number-of-Atoms: $\mathbb{N}$  & -  \\
+\hline
+{Elements of a ChemicalEq} & ChemicalEq: \newline ChemicalEqT & set of Element: ElementT  & -  \\
+\hline
+{Balanced reaction for an element} & Reaction: \newline ReactionT
+ \newline Element: ElementT &  B: Boolean  & number of atoms in each side for one element is not equal \\
+\hline
+{Balanced reaction} & Reaction: \newline ReactionT &  B: Boolean  & number of atoms in each side for all element is not equal \\
+\hline
+{balanced chemical reaction} & Reaction: \newline ReactionT &  Reaction*: ReactionT  & number of atoms in each side for all element is not equal \\
+\hline
+\end{tabular}
+\end{center}
+
+\subsection{Semantics}
+
+\subsubsection{State Variables}
+e: ElementT
+\newline
+m : MoleculeT 
+\newline
+C: CompoundT
+\newline
+S: StoichiometricT
+\newline
+Ce: ChemicalEq
+\newline
+R: ReactionT
+\subsubsection{Environment Variables}
+
+None.
+
+\subsubsection{Assumptions}
+
+None.
+
+\subsubsection{Access Routine Semantics}
+
+\noindent (Number-of-Atoms-in-Molecule):
+\begin{itemize}
+\item transition: None.
+\item output: Number-of-Atoms-in-Molecule $\coloneqq$ $\mathbb{N}$
+\item exception:  None
+\end{itemize}
+
+\noindent (Number-of-Atoms-in-Compound):
+\begin{itemize}
+\item transition: None.
+\item output: Number-of-Atoms-in-Compound $\coloneqq$ $\mathbb{N}$
+\item exception:  None
+\end{itemize}
+
+\noindent (Number-of-Atoms-in-Stoichiometric):
+\begin{itemize}
+\item transition: None.
+\item output: Number-of-Atoms-in-Stoichiometric $\coloneqq$  $\mathbb{N}$
+\item exception:  None
+\end{itemize}
+
+\noindent (Number-of-Atoms-in-ChemicalEq):
+\begin{itemize}
+\item transition: None.
+\item output: Number-of-Atoms-in-ChemicalEq $\coloneqq$  $\mathbb{N}$
+\item exception:  None
+\end{itemize}
+
+\noindent (ElementsInCompoundT):
+\begin{itemize}
+\item transition: None.
+\item output: set of ElementT 
+\item exception:  None
+\end{itemize}
+
+\noindent (Elements of a ChemicalEq):
+\begin{itemize}
+\item transition: None.
+\item output: set of ElementT
+\item exception:  None
+\end{itemize}
+
+\noindent (Balanced reaction for an element):
+\begin{itemize}
+\item transition: None 
+\item output: if (Number-of-Atoms-in-ChemicalEq(R[0],e) = Number-of-Atoms-in-ChemicalEq (R[1] ,e ) )
+then True\\
+if ( Number-of-Atoms-in-ChemicalEq(R[0],e) $\neq$ Number-of-Atoms-in-ChemicalEq (R[1] ,e ) ) then False
+\item exception:  None
+\end{itemize}
+
+\noindent (Balanced reaction):
+\begin{itemize}
+\item transition: None.
+\item output: if $\forall$( Number-of-Atoms-in-ChemicalEq(R[0],e) = Number-of-Atoms-in-ChemicalEq (R[1] ,e ) )
+then True\\
+if $\exists$( Number-of-Atoms-in-ChemicalEq(R[0],e) $\neq$ Number-of-Atoms-in-ChemicalEq (R[1] ,e ) )
+then False
+\item exception:  None
+\end{itemize}
+
+
+\subsubsection{Local Functions}
+1. Number-of-Atoms-in-Molecule: MoleculeT  X ElementT $\rightarrow$ $\mathbb{N}$
+\newline
+Number-of-Atoms-in-Molecule(m,e) $\equiv$ (m.element = e $\rightarrow$ m.number $\vert$ m.element $\neq$ e $\rightarrow$ 0) \\
+\newline
+2. Number-of-Atoms-in-Compound: CompoundT  X ElementT $\rightarrow$ $\mathbb{N}$
+\newline
+Number-of-Atoms-in-Compound(C,e) $\equiv$ + (m : MoleculeT$\vert$ m $\in$ C $\cdot$   Number-of-Atoms-in-Molecule(m,e) ) \\
+\newline
+3. Number-of-Atoms-in-Stoichiometric: StoichiometricT  $\times$ ElementT $\rightarrow$ $\mathbb{N}$
+\newline
+Number-of-Atoms-in-Stoichiometric(S,e) $\equiv$ (S.coefficient $\cdot$ Number-of-Atoms-in-Compound (S.Compound,e) )  \\
+\newline
+4. Number-of-Atoms-in-ChemicalEq: ChemicalEqT  X ElementT $\rightarrow$ $\mathbb{N}$
+\newline
+Number-of-Atoms-in-ChemicalEq (Ce,e) $\equiv$ + (S : StoichiometricT $\vert$ S $\in$ Ce $\cdot$ Number-of-Atoms-in-Stoichiometric(S,e))\\
+\newline
+5. ElementsInCompoundT : CompoundT $\rightarrow$ set of ElementT.
+\newline
+ElementsInCompound(C) $\equiv$ $\cup$ \{ m : MoleculeT $\vert$ m $\in$ C $\cdot$ m.element\}\\
+\newline
+6. ElementsInChemicalEq : ChemicalEqT $\rightarrow$ set of ElementT.
+\newline
+ElementsInChemicalEq(Ce) $\equiv$ $\cup$ \{ C : CompoundT $\vert$ C $\in$ Ce $\cdot$ ElementsInCompound(C)\}\\
+\newline
+7. IsBalancedReactionForElement : ReactionT x ElementT $\rightarrow$ B 
+\newline
+IsBalancedReactionForElement (R, e) $\equiv$ Number-of-Atoms-in-ChemicalEq(R[0],e) = Number-of-Atoms-in-ChemicalEq (R[1] ,e )\\ 
+\newline
+8. IsBalancedReaction : ReactionT  $\rightarrow$ B 
+\newline
+IsBalancedReaction(R) $\equiv$ $\forall$ ( e :  ElementT $\vert$ e $\in$ ElementsInChemicalEq(R[0]) $\cdot$ IsBalancedReactionForElement(R, e))
+
+\newpage
+  
+\section{MIS of Mass Calculation Module} \label{Mass} 
+
+\subsection{Module}
+
+Mass
+
+\subsection{Uses}
+
+Balancing (Section \ref{balancing}) , Atomic Mass (Section \ref{Atomic Mass})
+
+\subsection{Syntax}
+
+\subsubsection{Exported Constants}
+
+None.
+
+\subsubsection{Exported Access Programs}
+
+\begin{center}
+\begin{tabular}{p{2cm} p{4cm} p{4cm} p{2cm}}
+\hline
+\textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
+\hline
+{Molecular weight} & Atomic-Mass: $\mathbb{R}$
+  \newline Number-of-Atoms-in-Compound: $\mathbb{N}$ & Molecular-weight:$\mathbb{R}$ & - \\
+\hline
+{mole-ratio}  & coefficient1 : $\mathbb{N}$
+  \newline coefficient2 : $\mathbb{N}$ & mole-ratio: $\mathbb{N}$  & - \\
+  \hline
+{$mole_1$}  & mass : $\mathbb{R}$
+  \newline Molecular-weight: $\mathbb{R}$ & mole: $\mathbb{R}$  & - \\
+\hline
+{$mole_2$} & mole1: $\mathbb{R}$
+  \newline mole-ratio: $\mathbb{R}$ & mole2: $\mathbb{R}$ & - \\
+ \hline
+ {mass} & mole2: $\mathbb{R}$
+  \newline Molecular-weight: $\mathbb{R}$ & mass:$\mathbb{R}$ & - \\
+\hline
+\end{tabular}
+\end{center}
+
+\subsection{Semantics}
+
+\subsubsection{State Variables}
+
+None
+
+
+\subsubsection{Environment Variables}
+
+None
+
+\subsubsection{Assumptions}
+
+None
+
+\subsubsection{Access Routine Semantics}
+
+\noindent (Molecular-weight):
+\begin{itemize}
+\item transition: None
+\item output: Molecular-weight :=  $\mathbb{R}$ 
+\item exception: None 
+\end{itemize}
+
+\noindent (Mass-to-Mole):
+\begin{itemize}
+\item transition: None
+\item output: Mole := $\mathbb{R}$ 
+\item exception: None 
+\end{itemize}
+
+\noindent (mole ratio):
+\begin{itemize}
+\item transition: None
+\item output: mole-ratio := $\mathbb{N}$ 
+\item exception: None 
+\end{itemize}
+
+\noindent (Mole-ratio-to-Mole):
+\begin{itemize}
+\item transition: None
+\item output: Mole2 := $\mathbb{R}$
+\item exception: None 
+\end{itemize}
+
+\noindent (Mole-to-Mass):
+\begin{itemize}
+\item transition: None
+\item output:  Mass := $\mathbb{R}$
+\item exception: None 
+\end{itemize}
+
+\subsubsection{Local Functions}
+1. Molecular-weight : CompoundT  $\rightarrow$ $\mathbb{R}$ 
+\newline
+Molecular-weight := Atomic-Mass $\times$ Number-of-Atoms-in-Compound\\
+\newline
+2. Mole := $\frac{Mass}{Molecular_weight}$ \\
+\newline
+3. Mole-ratio:  CompoundT $\rightarrow$  $\mathbb{N}$
+\newline
+Mole-ratio := $\frac{coefficient2}{coefficient1}$\\
+\newline
+4. Mole2 := $\frac{Mole1}{mole-ratio}$ \\
+\newline
+5. Mass := $\frac{Mole}{Molecular-weight}$
+\newpage
+
+\section{MIS of GUI Module} \label{display} 
+
+\subsection{Module}
+
+GUI
+
+\subsection{Uses}
+
+Balancing  (Section \ref{balancing}) , Mass (Section \ref{Mass})
+
+
+\subsection{Syntax}
+
+\subsubsection{Exported Constants}
+
+None.
+\subsubsection{Exported Types}
+ReactionT = ? 
+\subsubsection{Exported Access Programs}
+
+\begin{center}
+\begin{tabular}{p{2cm} p{4cm} p{4cm} p{2cm}}
+\hline
+\textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
+\hline
+{GUI} & - & Mass: $\mathbb{R}$ \newline balanced-reaction: ReactionT & - \\
+\hline
+\end{tabular}
+\end{center}
+
+\subsection{Semantics}
+
+\subsubsection{State Variables}
+
+None
+
+\subsubsection{Environment Variables}
+
+screen interface
+
+\subsubsection{Assumptions}
+
+None
+
+\subsubsection{Access Routine Semantics}
+
+\noindent (display):
+\begin{itemize}
+\item transition: None
+\item output: Mass: $\mathbb{R}$ , balanced reaction:  ReactionT 
+\item exception: None
+\end{itemize}
+
 
 \subsubsection{Local Functions}
 
-\wss{As appropriate} \wss{These functions are for the purpose of specification.
-  They are not necessarily something that is going to be implemented
-  explicitly.  Even if they are implemented, they are not exported; they only
-  have local scope.}
+None
 
-\newpage
 
 \bibliographystyle {plainnat}
-\bibliography {../../../refs/References}
-
+\bibliography{../../ReferenceMaterial/References}
 \newpage
 
-\section{Appendix} \label{Appendix}
-
-\wss{Extra information if required}
 
 \end{document}
