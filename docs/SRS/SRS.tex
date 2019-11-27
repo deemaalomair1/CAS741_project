@@ -155,8 +155,8 @@ literature and with existing documentation for stoichiometry mass-mass program. 
 \endlastfoot
 \textbf{symbol} & \textbf{unit} & \textbf{description}\\
 \midrule 
-$m$ & \si[per-mode=symbol] {\gram} & mass.\\
-$mw$ & \si[per-mode=symbol] {\gram/\mol} & molecular weight.\\ 
+$$\textit{mass}$$ & \si[per-mode=symbol] {\gram} & mass.\\
+$$\textit{mw}$$ & \si[per-mode=symbol] {\gram/\mol} & molecular weight.\\ 
 \bottomrule
 \end{longtable*}
 
@@ -180,10 +180,10 @@ $mw$ & \si[per-mode=symbol] {\gram/\mol} & molecular weight.\\
  SMMP & Stoichiometry Mass-Mass Program\\
   T & Theoretical Model\\
   B & Boolean result\\
-  R[0] & Reactant \\
-  R1 & Reactant with known mass\\
-  R2 & Reactant with unknown mass\\
-  R[1] & product \\
+  $\textit{R[0]}$ & Reactant \\
+  $\textit{R1}$ & Reactant with known mass\\
+  $\textit{R2}$ & Reactant with unknown mass\\
+  $\textit{R[1]}$ & product \\
   \bottomrule
   \end{tabular}
   \caption{ Abbreviations and Acronyms}
@@ -386,7 +386,7 @@ This section focuses on the general equations and laws that SMMP is based on.
   \hline
   Label&\bf Law of Conservation of Mass\\
   \hline
-  Equation&  $ \sum $ mass for R =  $\sum$ mass for P.  \\
+  Equation&  $ \sum$ mass for $\textit{R}$ =  $\sum$ mass for $\textit{P}$.  \\
   \hline
   Description & The above equation states that there is no change in total mass occurs in a chemical reaction. The total number of    products  mass is equal to the total number of reactants mass.\\ 
    
@@ -433,9 +433,9 @@ Symbol & -\\
   Equation & AtomicMass: ElementT $\rightarrow$ $\mathbb{R}$ \\
 
   \hline
-  Description &  AtomicMass(e) $\equiv$ ( e= H $\rightarrow$ 1.0079 $\vert$  e= He $\rightarrow$ 4.002 $\vert$...)  \\
-   & Where e is an element $\in$ ElementT \\
-   &  The function will take the element(e) and return the number of atomic mass of that element. \\ 
+  Description &  AtomicMass($\textit{e}$) $\equiv$ ( $\textit{e}$ = H $\rightarrow$ 1.0079 $\vert$  $\textit{e}$ = He $\rightarrow$ 4.002 $\vert$...)  \\
+   & Where $\textit{e}$ is an element $\in$ ElementT \\
+   &  The function will take the element($\textit{e}$) and return the number of atomic mass of that element. \\ 
 
   \hline
   Sources& \cite{AtomicMass} \\
@@ -462,13 +462,13 @@ Symbol & -\\
 % \hline
   SI Units & -\\
   \hline
-  Equation & Number-of-Atoms-in-Molecule: MoleculeT  X ElementT $\rightarrow$ $\mathbb{N}$ \\
+  Equation & Number-of-Atoms-in-Molecule: MoleculeT  $\times$ ElementT $\rightarrow$ $\mathbb{N}$ \\
 
   \hline
-  Description &  Number-of-Atoms-in-Molecule(m,e) $\equiv$ (m.element = e $\rightarrow$ m.number $\vert$ m.element $\neq$ e $\rightarrow$ 0) \\
-   & Where e is an element $\in$ ElementT  \\
-   &  m is an molecule  $\in$  MoleculeT \\
-   &  The function will compare the molecule(m) with element(e) if they are equal it returns the number of atoms in that element else it will return 0 \\ 
+  Description &  Number-of-Atoms-in-Molecule($\textit{m}$,$\textit{e}$) $\equiv$ ($\textit{m}$.element = $\textit{e}$ $\rightarrow$ $\textit{m}$.number $\vert$ $\textit{m}$.element $\neq$ $\textit{e}$ $\rightarrow$ 0) \\
+   & Where $\textit{e}$ is an element $\in$ ElementT  \\
+   &  $\textit{m}$ is a molecule  $\in$  MoleculeT \\
+   &  The function will compare the molecule($\textit{m}$) with element($\textit{e}$) if they are equal it returns the number of atoms in that element else it will return 0 \\ 
   
   \hline
   Sources& \cite{Molecule:compound} \\
@@ -498,13 +498,13 @@ Symbol & -\\
 % \hline
   SI Units & -\\
   \hline
-  Equation& Number-of-Atoms-in-Compound: CompoundT  X ElementT $\rightarrow$ $\mathbb{N}$\\
+  Equation& Number-of-Atoms-in-Compound: CompoundT  $\times$ ElementT $\rightarrow$ $\mathbb{N}$\\
   \hline
-  Description & Number-of-Atoms-in-Compound (C,e) $\equiv$ + (m : MoleculeT $\vert$ m $\in$ C $\cdot$   Number-of-Atoms-in-Molecule(m,e) ) \\
-   & Where e is an element $\in$ ElementT  \\
-  &  m is a molecule $\in$ C \\ 
-  & C is the compound. \\ 
-  & The function will take all set of molecules(m)  $\in$  compound(C)  and apply Number-of-Atoms-in-Molecule(m,e) function on them then add them together.\\
+  Description & Number-of-Atoms-in-Compound ($\textit{C}$,$\textit{e}$) $\equiv$ + ($\textit{m}$ : MoleculeT $\vert$ $\textit{m}$ $\in$ $\textit{C}$ $\cdot$   Number-of-Atoms-in-Molecule($\textit{m}$,$\textit{e}$) ) \\
+   & Where $\textit{e}$ is an element $\in$ ElementT  \\
+  &  $\textit{m}$ is a molecule $\in$ $\textit{C}$ \\ 
+  & $\textit{C}$ is the compound. \\ 
+  & The function will take all set of molecules($\textit{m}$)  $\in$  compound($\textit{C}$)  and apply Number-of-Atoms-in-Molecule($\textit{m}$,$\textit{e}$) function on them then add them together.\\
   \hline
   Sources& \cite{Molecule:compound} \\
   \hline
@@ -530,13 +530,13 @@ Symbol & -\\
 % \hline
   SI Units & -\\
   \hline
-  Equation& Number-of-Atoms-in-Stoichiometric: StoichiometricT  X ElementT $\rightarrow$ $\mathbb{N}$\\
+  Equation& Number-of-Atoms-in-Stoichiometric: StoichiometricT  $\times$ ElementT $\rightarrow$ $\mathbb{N}$\\
   \hline
-  Description &Number-of-Atoms-in-Stoichiometric(S,e) $\equiv$  (S.coefficient  $\cdot$   Number-of-Atoms-in-Compound(S.Compound,e) ) \\
-   & Where S $\in$ StoichiometricT  \\
-  &  coefficient $\in$ StoichiometricT \\ 
-  & C is the compound $\in$ StoichiometricT \\ 
-  & The function will take the compound(C) and get Number-of-Atoms-in-Compound(C) then multiply it with compound coefficient.\\
+  Description &Number-of-Atoms-in-Stoichiometric($\textit{S}$,$\textit{e}$) $\equiv$  ($\textit{S}$.coefficient  $\cdot$   Number-of-Atoms-in-Compound($\textit{S}$.Compound,$\textit{e}$) ) \\
+   & Where $\textit{S}$ $\in$ StoichiometricT  \\
+  &  $\textit{coefficient}$ $\in$ StoichiometricT \\ 
+  & $\textit{C}$ is the compound $\in$ StoichiometricT \\ 
+  & The function will take the compound($\textit{C}$) and get Number-of-Atoms-in-Compound($\textit{C}$) then multiply it with compound coefficient.\\
   \hline
   Sources& \cite{Molecule:compound} \\
   \hline
@@ -563,13 +563,13 @@ Symbol & -\\
 % \hline
   SI Units & -\\
   \hline
-  Equation& Number-of-Atoms-in-ChemicalEq: ChemicalEqT  X ElementT $\rightarrow$ $\mathbb{N}$\\
+  Equation& Number-of-Atoms-in-ChemicalEq: ChemicalEqT  $\times$ ElementT $\rightarrow$ $\mathbb{N}$\\
   \hline
-  Description & Number-of-Atoms-in-ChemicalEq (Ce,e) $\equiv$ + (S : StoichiometricT $\vert$ S $\in$ Ce $\cdot$ Number-of-Atoms-in-Stoichiometric(S,e)) \\
-   & Where S $\in$ StoichiometricT  \\
-  & S $\in$ Ce\\
-  & Ce is one side of chemical equation.\\
-  & The function will take each  Stoichiometric(S)  $\in$ ChemicalEq(Ce) and apply number-of-Atoms-in-Stoichiometric(S,e) function on it then add them together. \\
+  Description & Number-of-Atoms-in-ChemicalEq ($\textit{Ce}$,$\textit{e}$) $\equiv$ + ($\textit{S}$ : StoichiometricT $\vert$ $\textit{S}$ $\in$ $\textit{Ce}$ $\cdot$ Number-of-Atoms-in-Stoichiometric($\textit{S}$,$\textit{e}$)) \\
+   & Where $\textit{S}$ $\in$ StoichiometricT  \\
+  & $\textit{S}$ $\in$ $\textit{Ce}$\\
+  & $\textit{Ce}$ is one side of chemical equation.\\
+  & The function will take each  Stoichiometric($\textit{S}$)  $\in$ ChemicalEq($\textit{Ce}$) and apply number-of-Atoms-in-Stoichiometric($\textit{S}$,$\textit{e}$) function on it then add them together. \\
   \hline
   Sources&  \cite{chemicalReaction} \\
   \hline
@@ -598,10 +598,10 @@ Symbol & -\\
   \hline
   Equation& ElementsInCompoundT : CompoundT $\rightarrow$ set of ElementT.\\
   \hline
-  Description & ElementsInCompound(C) $\equiv$ $\cup$ \{ m : MoleculeT $\vert$ m $\in$ C $\cdot$ m.element\} \\
-  & where C is the compound. \\ 
-  & m is Molecule $\in$ C.\\
-  & The function will take each Molecule in Compound(C) and return its element then apply union to all molecules $\in$ C. \\ 
+  Description & ElementsInCompound($\textit{C}$) $\equiv$ $\cup$ \{ $\textit{m}$ : MoleculeT $\vert$ $\textit{m}$ $\in$ $\textit{C}$ $\cdot$ $\textit{m}$.element\} \\
+  & where $\textit{C}$ is the compound. \\ 
+  & $\textit{m}$ is Molecule $\in$ $\textit{C}$.\\
+  & The function will take each Molecule in Compound($\textit{C}$) and return its element then apply union to all molecules $\in$ $\textit{C}$. \\ 
     \hline
   Sources&  \cite{Molecule:compound} \\
   \hline
@@ -630,10 +630,10 @@ Symbol & -\\
   \hline
   Equation& ElementsInChemicalEq : ChemicalEqT $\rightarrow$ set of ElementT.\\
   \hline
-  Description & ElementsInChemicalEq(Ce) $\equiv$ $\cup$ \{ C : CompoundT $\vert$ C $\in$ Ce $\cdot$ ElementsInCompound(C)\} \\
-  & where C is the compound $\in$ Ce. \\ 
-  & ChemicalEq(Ce) is one side of chemical equation\\
-  & The function will take each compound in ChemicalEq(Ce) and return its elements then apply union to all compound $\in$ Ce. \\ 
+  Description & ElementsInChemicalEq($\textit{Ce}$) $\equiv$ $\cup$ \{ $\textit{C}$ : CompoundT $\vert$ $\textit{C}$ $\in$ $\textit{Ce}$ $\cdot$ ElementsInCompound($\textit{C}$)\} \\
+  & where $\textit{C}$ is the compound $\in$ $\textit{Ce}$. \\ 
+  & ChemicalEq($\textit{Ce}$) is one side of chemical equation\\
+  & The function will take each compound in ChemicalEq($\textit{Ce}$) and return its elements then apply union to all compound $\in$ $\textit{Ce}$. \\ 
     \hline
   Sources&  \cite{chemicalReaction}\\
   \hline
@@ -660,12 +660,12 @@ Symbol & -\\
 % \hline
   SI Units & -\\
   \hline
-  Equation& IsBalancedReactionForElement : ReactionT x ElementT $\rightarrow$ B   \\
+  Equation& IsBalancedReactionForElement : ReactionT $\times$ ElementT $\rightarrow$ B   \\
   \hline
-  Description & IsBalancedReactionForElement (R, e) $\equiv$ Number-of-Atoms-in-ChemicalEq(R[0],e) = Number-of-Atoms-in-ChemicalEq (R[1] ,e )   \\
-  & Where R[0] is the reactant on the left side of chemical reaction.\\ 
-  & R[1]  is reactant on the right side of chemical reaction called "products" \\ 
-  & R is a reaction\\
+  Description & IsBalancedReactionForElement ($\textit{R}$, $\textit{e}$) $\equiv$ Number-of-Atoms-in-ChemicalEq($\textit{R[0]}$,$\textit{e}$) = Number-of-Atoms-in-ChemicalEq ($\textit{R[1]}$ ,$\textit{e}$ )   \\
+  & Where $\textit{R[0]}$ is the reactant on the left side of chemical reaction.\\ 
+  & $\textit{R[1]}$  is reactant on the right side of chemical reaction called "products" \\ 
+  & $\textit{R}$ is a reaction\\
   & The function will take one reactant $\in$ chemical reaction  and check if it balanced or not. \\ 
   \hline
   Sources& \cite{balance}. \\
@@ -694,10 +694,10 @@ Symbol & -\\
   \hline
   Equation& IsBalancedReaction : ReactionT  $\rightarrow$ B   \\
   \hline
-  Description & IsBalancedReaction(R) $\equiv$ $\forall$ ( e :  ElementT $\vert$ e $\in$ ElementsInChemicalEq(R[0]) $\cdot$ IsBalancedReactionForElement(R, e))  \\
-  & Where R[0] is the reactant $\in$ R.\\ 
-  & R  is reaction\\ 
-  & The function will take each reactant in Reaction and return if its balanced or not. if all reactants $\in$ R is balanced then R is balanced. \\ 
+  Description & IsBalancedReaction($\textit{R}$) $\equiv$ $\forall$ ( $\textit{e}$ :  ElementT $\vert$ $\textit{e}$ $\in$ ElementsInChemicalEq($\textit{R[0]}$) $\cdot$ IsBalancedReactionForElement($\textit{R}$, $\textit{e}$))  \\
+  & Where $\textit{R[0]}$ is the reactant $\in$ $\textit{R}$.\\ 
+  & $\textit{R}$  is reaction\\ 
+  & The function will take each reactant in Reaction and return if its balanced or not. if all reactants $\in$ $\textit{R}$ is balanced then $\textit{R}$ is balanced. \\ 
   \hline
   Sources& \cite{balance}. \\
   \hline
@@ -726,9 +726,9 @@ Symbol & -\\
   \hline
   Equation& AreAllCoefficientOnes : ChemicalEqT $\rightarrow$ B   \\
   \hline
-  Description & AreAllCoefficientOnes(Ce) $\equiv$ $\forall$ ( C :  CompoundT $\vert$ C $\in$ Ce $\cdot$ Ce.coefficient =1 ) \\
+  Description & AreAllCoefficientOnes($\textit{Ce}$) $\equiv$ $\forall$ ( $\textit{C}$ :  CompoundT $\vert$ $\textit{C}$ $\in$ $\textit{Ce}$ $\cdot$ $\textit{Ce}$.$\textit{coefficient}$=1 ) \\
   & The function will take every coefficient in compound $\in$ ChemicalEqReaction and return if its equal to 1 or not.\\ 
-  &  where ChemicalEq(Ce) is one side of chemical equation\\ 
+  &  where ChemicalEq($\textit{Ce}$) is one side of chemical equation\\ 
    \hline
   Sources&  \cite{Coefficients} \\
   \hline
@@ -758,9 +758,9 @@ Symbol &$ - $\\
   \hline
   Equation& Mole ratio:  CompoundT $\rightarrow$  $\mathbb{N}$ \\
   \hline
-  Description &  Mole ratio $\equiv$  	$\div$( C :  CompoundT $\vert$ C $\in$ Ce $\cdot$ Ce.coefficient )  \\
+  Description &  Mole ratio $\equiv$  	$\div$( $\textit{C}$ :  CompoundT $\vert$ $\textit{C}$ $\in$ $\textit{Ce}$ $\cdot$ $\textit{Ce}$.coefficient )  \\
                & The above function will take the coefficient for each compound in the ChemicalEq and divide them together.  \\
-                 & where  ChemicalEq(Ce) is one side of chemical reaction. \\
+                 & where  ChemicalEq($\textit{Ce}$) is one side of chemical reaction. \\
 
   \hline
   Sources& \cite{Mole_ratio}. \\
@@ -782,16 +782,16 @@ Number& DD\refstepcounter{datadefnum}\thedatadefnum \label{Molecular_weight}\\
 \hline
 Label& \bf molecular weight\\
 \hline
-Symbol & mw\\
+Symbol & $\textit{mw}$\\
 \hline
 % Units& $Mt^{-3}$\\
 % \hline
   SI Units & \si{\gram / \mol}\\
   \hline
-  Equation& mw : CompoundT  $\rightarrow$ $\mathbb{R}$  \\
+  Equation& $\textit{mw}$ : CompoundT  $\rightarrow$ $\mathbb{R}$  \\
   \hline
-  Description & mw(C) : + ( m : MoleculeT $\vert$ m $\in$ C $\cdot$ Number-of-Atoms-in-Molecule(m,e) $\times$ AtomicMass(m,e)\\
- &where $mw$ is the molecular weight of reactant .\\
+  Description & $\textit{mw}$($\textit{C}$) : + ( $\textit{m}$ : MoleculeT $\vert$ $\textit{m}$ $\in$ $\textit{C}$ $\cdot$ Number-of-Atoms-in-Molecule($\textit{m}$,$\textit{e}$) $\times$ AtomicMass($\textit{m}$,$\textit{e}$)\\
+ &where $\textit{mw}$ is the molecular weight of reactant .\\
  & It is computed by multiplying the AtomicMass for the molecule with the Number-of-Atoms-in-Molecule. If the reactant is compound it will take the add all its Molecule's molecular weight. \\ 
   \hline
   Sources& \cite{Molecular_weight} \\
@@ -855,12 +855,12 @@ The goals ~\ref{G1} and ~\ref{G2} are solved by ~\ref{sec_instance}.
   \hline
   Label& \bf Converting mass to mole\\
   \hline
-  Input&  m , mw \\
+  Input&  $\textit{mass}$ , $\textit{mw}$ \\
   \hline
-  Output&  mole =  $ \frac{m}{mw} $ \\
+  Output&  $\textit{mole}$ =  $ \frac{\textit{mass}}{\textit{mw}} $ \\
   \hline
-  Description& m is the substance mass.\\
-                & mw is the substance molecular weight.\\
+  Description& $\textit{mass}$ is the substance mass.\\
+                & $\textit{mw}$ is the substance molecular weight.\\
                & The above equation gives the amount of mole for particular substance by dividing the mass amount  with
                 molecular weight. \\
   \hline
@@ -883,14 +883,14 @@ The goals ~\ref{G1} and ~\ref{G2} are solved by ~\ref{sec_instance}.
   \hline
   Label& \bf  Converting mole ratio to mole.\\
   \hline
-  Input&  mole amount of R1 , mole ratio.  \\
+  Input&  $\textit{mole-of-R1}$ , $\textit{mole-ratio}$.  \\
   \hline
-  Output&  mole amount of R2 = $\frac{mole-of-R1}{mole-ratio} $\\
+  Output&  $\textit{mole amount of R2}$ = $\frac{\textit{mole-of-R1}}{\textit{mole-ratio}} $\\
   \hline
-  Description& mol of R1 is the mole amount for known reactant.\\
-                 & mole ratio is the mole ratio between R1 and R2.\\
-                & The above equation gives the amount of mole for R2 substance by dividing the mole amount  of R1
-                with the mole ratio. \\
+  Description& $\textit{mole-of-R1}$ is the mole amount for known reactant.\\
+                 & $\textit{mole-ratio}$ is the mole ratio between $\textit{R1}$ and $\textit{R2}$.\\
+                & The above equation gives the amount of mole for R2 substance by dividing the mole amount  of $\textit{R1}$
+                with the $\textit{mole-ratio}$. \\
 
   \hline
   Sources& \cite{Mole_mass/Mole_ratio_mole} \\
@@ -912,12 +912,12 @@ The goals ~\ref{G1} and ~\ref{G2} are solved by ~\ref{sec_instance}.
   \hline
   Label& \bf  Converting mole to mass \\
   \hline
-  Input&  mole amount  , mw \\
+  Input&  mole amount  , $\textit{mw}$ \\
   \hline
-  Output&  mass =  $ mol  \times mw  $\\
+  Output&  $\textit{mass}$ =  $ \textit{mole}  \times \textit{mw}  $\\
   \hline
-  Description& mol is the mole amount for the substance.\\
-                &  mw is the substance molecular weight.\\
+  Description& $\textit{mole}$ is the mole amount for the substance.\\
+                &  $\textit{mw}$ is the substance molecular weight.\\
                &  The above equation gives the mass  for  substance by multiplying the mole amount  
                 with the molecular weight . \\
   \hline
@@ -954,7 +954,7 @@ uncertainty quantification exercise.
   \textbf{Var} & \textbf{Physical Constraints} & \textbf{Software Constraints} &
                              \textbf{Typical Value} & \textbf{Uncertainty}\\
   \midrule 
-      m  &  m $>$ 0  &  - & - & - \\
+      $\textit{mass}$  &  $\textit{mass}$ $>$ 0  &  - & - & - \\
      
      \bottomrule
 \end{longtable*}
@@ -975,8 +975,8 @@ taken by the variable.
   \toprule
   \textbf{Var} & \textbf{Physical Constraints} \\
   \midrule 
-  m & m $>$ 0 \\
-  atoms &  $ \sum $ atoms for R[0] =  $\sum$ atoms for R[1].   \\
+  $\textit{mass}$ & $\textit{mass}$ $>$ 0 \\
+  atoms &  $ \sum $ atoms for $\textit{R[0]}$=  $\sum$ atoms for $\textit{R[1]}$.   \\
    \bottomrule
 \end{longtable*}
 \end{table}
@@ -996,7 +996,7 @@ qualities that the software is expected to exhibit.
 2- Mass of R1.\\
 
 \item[R\refstepcounter{reqnum}\thereqnum \label{R_OutputInputs}:]  The system will produce the followings:\\
-1- Balanced chemical reaction.
+1- Balanced chemical reaction.\\
  2- Mass for R2. \\
 
 \item[R\refstepcounter{reqnum}\thereqnum \label{R_Calculate}:] The system needs to calculate the followings:\\
@@ -1072,6 +1072,7 @@ other.
 \ddref{atomicMass}         & X& X& X& & \\ \hline
 \ddref{atoms_count_m}         & X& X& X& & \\ \hline
 \ddref{atoms_count_c}         & X& X& X& & \\ \hline
+\ddref{atoms_count_Sc}         & X& X& X& & \\ \hline
 \ddref{atoms_count_Eq}        & X& X& X& & \\ \hline
 \ddref{elements_of_compound}         & X& X& X& & \\ \hline
 \ddref{elements_of_Eq}          & X& X& X& & \\ \hline
@@ -1106,26 +1107,27 @@ other.
 
 \begin{table}[h!]
 \centering
-\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|cl}
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|clc|}
 \hline        
-	& \tref{Mass_law}&\ddref{atomicMass} & \ddref{atoms_count_m}& \ddref{atoms_count_c}&\ddref{atoms_count_Eq}&  \ddref{elements_of_compound} &\ddref{elements_of_Eq} & \ddref{balanced_reaction_elm} & \ddref{balanced_reaction} & \ddref{Coefficient} & \ddref{Mole_ratio} & \ddref{Molecular_weight} & \iref{balanced}& \iref{Mass_mole}& \iref{Mole_ratio_mole}& \iref{Mole_mass} \\
+	& \tref{Mass_law}&\ddref{atomicMass} & \ddref{atoms_count_m}& \ddref{atoms_count_c}& \ddref{atoms_count_Sc} &\ddref{atoms_count_Eq}&  \ddref{elements_of_compound} &\ddref{elements_of_Eq} & \ddref{balanced_reaction_elm} & \ddref{balanced_reaction} & \ddref{Coefficient} & \ddref{Mole_ratio} & \ddref{Molecular_weight} & \iref{balanced}& \iref{Mass_mole}& \iref{Mole_ratio_mole}& \iref{Mole_mass} \\
 \hline
-\tref{Mass_law}     & & & & & & X&X & & X&X & & & & & &\\ \hline
-\ddref{atomicMass} & & & & & & X&X & & X&X & & & & & &\\ \hline
-\ddref{atoms_count_m} & & & & & & X&X & & X&X & & & & & &\\ \hline
-\ddref{atoms_count_c} & & & & & & X&X & & X&X & & & & & &\\ \hline
-\ddref{atoms_count_Eq} & & & & & & X&X & & X&X & & & & & &\\ \hline
-\ddref{elements_of_compound} & & & & & & X&X & & X&X & & & & & &\\ \hline
-\ddref{elements_of_Eq} & & & & & & X&X & & X&X & & & & & &\\ \hline
-\ddref{balanced_reaction_elm} & & & & & & X&X & & X&X & & & & & &\\ \hline
-\ddref{balanced_reaction} & & & & & & X&X & & X&X & & & & & &\\ \hline
-\ddref{Coefficient} & & & & & & X&X & & X&X & & & & & &\\ \hline
-\ddref{Mole_ratio}  & & & & & & X&X & & X&X & & & & & &\\ \hline
-\ddref{Molecular_weight} & & & & & & X&X & & X&X & & & & & &\\ \hline
-\iref{balanced} & & & & & & X&X & & X&X & & & & & &\\ \hline
-\iref{Mass_mole}      & & & & & & X&X & & X&X & & & & & &\\ \hline
-\iref{Mole_ratio_mole}    & & & & & & X&X & & X&X & & & & & &\\ \hline
-\iref{Mole_mass}    & & & & & & X&X & & X&X & & & & & &\\ \hline
+\tref{Mass_law}    & & & & & & X&X & & X&X & & & & & & & \\ \hline
+\ddref{atomicMass} & & & & & & X&X & & X&X & & & & & & & \\ \hline
+\ddref{atoms_count_m} & & & & & & X&X & & X&X & & & & & & & \\ \hline
+\ddref{atoms_count_c} & & & & & & X&X & & X&X & & & & & & & \\ \hline
+ \ddref{atoms_count_Sc} & & & & & & X&X & & X&X & & & & & & & \\ \hline
+\ddref{atoms_count_Eq} & & & & & & X&X & & X&X & & & & & & & \\ \hline
+\ddref{elements_of_compound} & & & & & & X&X & & X&X & & & & & & & \\ \hline
+\ddref{elements_of_Eq} & & & & & & X&X & & X&X & & & & & & & \\ \hline
+\ddref{balanced_reaction_elm} & & & & & & X&X & & X&X & & & & & & & \\ \hline
+\ddref{balanced_reaction} & & & & & & X&X & & X&X & & & & & & & \\ \hline
+\ddref{Coefficient} & & & & & & X&X & & X&X & & & & & & & \\ \hline
+\ddref{Mole_ratio}  & & & & & & X&X & & X&X & & & & & & & \\ \hline
+\ddref{Molecular_weight} & & & & & & X&X & & X&X & & & & & & & \\ \hline
+\iref{balanced} & & & & & & X&X & & X&X & & & & & & & \\ \hline
+\iref{Mass_mole}      & & & & & & X&X & & X&X & & & & & & & \\ \hline
+\iref{Mole_ratio_mole}    & & & & & & X&X & & X&X & & & & & & & \\ \hline
+\iref{Mole_mass}    & & & & & & X&X & & X&X & & & & & & & \\ \hline
 \hline
 \end{tabular}
 \caption{Traceability Matrix Showing the Connections Between Items of Different Sections}
