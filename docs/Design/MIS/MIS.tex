@@ -145,7 +145,7 @@ The following table is taken directly from the Module Guide document for this pr
 
 \multirow{4}{0.3\textwidth}{Behaviour-Hiding}  &Input Module \\
 & Atomic Mass Module\\
-&Chemical Reaction Balancing Module\\
+&ReactionT Module\\
 & Mass Calculation Module\\
 \midrule
 
@@ -174,8 +174,7 @@ Not Applicable.
 
 \subsubsection{Exported Constants}
 None.
-\subsubsection{Exported Types}
-ReactionT = ?
+
 \subsubsection{Exported Access Programs}
 
 \begin{center}
@@ -203,16 +202,17 @@ Atomic Mass
 
 \subsection{Uses}
 
-Balancing (Section \ref{balancing})
+Reaction (Section \ref{Reaction})
 
 \subsection{Syntax}
 
 \subsubsection{Exported Constants}
 
-None. 
+None.
+
 \subsubsection{Exported Types}
 
-ElementT = ?
+None.
 
 
 \subsubsection{Exported Access Programs}
@@ -222,7 +222,7 @@ ElementT = ?
 \hline
 \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
 \hline
-{Atomic-Mass} & element: ElementT & Atomic-Mass: $\mathbb{R}$ & element $\notin$ ElementT  \\
+{Atomic-Mass} & e: ElementT & AtomicMass: $\mathbb{R}$ & e $\notin$ ElementT  \\
 \hline
 \end{tabular}
 \end{center}
@@ -231,9 +231,8 @@ ElementT = ?
 
 \subsubsection{State Variables}
 
-1. e: ElementT
-\newline 
-2. Atomic-Mass: $\mathbb{R}$
+None.
+
 \subsubsection{Environment Variables}
 
 Atomic Mass library file.
@@ -244,11 +243,11 @@ None.
 
 \subsubsection{Access Routine Semantics}
 
-\noindent (Atomic Mass):
+\noindent Atomic-Mass(e):
 \begin{itemize}
 \item transition: None.
-\item output:  AtomicMass $\coloneqq$  $\mathbb{R}$
-\item exception: if (e $\notin$ ElementT) $\rightarrow$  no-Atomic-Mass
+\item output:  out $\coloneqq$ AtomicMass 
+\item exception: exc $\coloneqq$ (e $\notin$ ElementT $\Rightarrow$  no-Atomic-Mass)
 \end{itemize}
 
 \subsubsection{Local Functions}
@@ -258,11 +257,12 @@ AtomicMass(e) $\equiv$ ( e= H $\rightarrow$ 1.0079 $\vert$  e= He $\rightarrow$ 
 
 \newpage
 
-\section{MIS of Chemical Reaction Balancing Module} \label{balancing} 
+
+\section{MIS of ReactionT Module} \label{Reaction} 
 
 \subsection{Template Module}
 
-Balancing
+Reaction
 
 \subsection{Uses}
 
@@ -276,22 +276,7 @@ None.
 
 \subsubsection{Exported Types}
 
-ElementT = $\forall$ e $\in$ set of chemical element = 
-\{ H,He,Li,Be,B,C,N,O,F,Ne,Na,Mg,Al,Si,P,S,Cl,Ar,K,
-Ca,Sc,Ti,V,Cr,Mn,Fe,Co,Ni,Cu,Zn,Ga,Ge,As,Se,Br,Kr,Rb,Sr,Y,Zr,Nb,Mo,Tc,Ru,Rh,Pd,Ag,Cd,In,
-Sn,Sb,Te,I,Xe,Cs,Ba,La,Ce,Pr,Nd,Pm,Sm,Eu,Gd,Tb,Dy,Ho,Er,Tm,Yb,Lu,Hf,Ta,W,Re,Os,Ir,Pt,
-Au,Hg,Tl,Pb,Bi,Po,At,Rn,Fr,Ra,Ac,Th,Pa,U,Np,Pu,Am,Cm,Bk,Cf,Es,Fm,Md,No,Lr,Rf,Db,Sg,
-Bh,Hs,Mt,Ds,Rg,Cn,Nh,Fl,Mc,Lv,Ts,Og \} \\
-\newline 
-MoleculeT = tuple of (number :  $\mathbb{N}$ , element : ElementT).\\
-\newline 
-CompoundT = set of MoleculeT.\\
-\newline 
-StoichiometricT = tuple of (coefficient : N , Compound : CompoundT)\\
-\newline
-ChemicalEqT = set of StoichiometricT\\
-\newline
-ReactionT = sequence [2] of ChemicalEq.\\
+ReactionT = ?
 
 \subsubsection{Exported Access Programs}
 
@@ -300,23 +285,9 @@ ReactionT = sequence [2] of ChemicalEq.\\
 \hline
 \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
 \hline
-{Molecule's atoms} & Molecule: \newline MoleculeT &  Number-of-Atoms: $\mathbb{N}$  & -  \\
+{IsBalanced-Reaction} & Reaction: \newline ReactionT &  B: Boolean  & - \\
 \hline
-{compound's atoms} & Compound: \newline CompoundT &  Number-of-Atoms: $\mathbb{N}$  & -  \\
-\hline
-{Elements of a compound} & Compound: \newline CompoundT & set of Element: ElementT  & -  \\
-\hline
-{number of atoms in ChemicalEq} & Compound: \newline CompoundT
-\newline coefficient :  $\mathbb{N}$ &  Number-of-Atoms: $\mathbb{N}$  & -  \\
-\hline
-{Elements of a ChemicalEq} & ChemicalEq: \newline ChemicalEqT & set of Element: ElementT  & -  \\
-\hline
-{Balanced reaction for an element} & Reaction: \newline ReactionT
- \newline Element: ElementT &  B: Boolean  & number of atoms in each side for one element is not equal \\
-\hline
-{Balanced reaction} & Reaction: \newline ReactionT &  B: Boolean  & number of atoms in each side for all element is not equal \\
-\hline
-{balanced chemical reaction} & Reaction: \newline ReactionT &  Reaction*: ReactionT  & number of atoms in each side for all element is not equal \\
+{Balanced-Reaction} & Reaction: \newline ReactionT &  Reaction*: \newline ReactionT  &  ($\neg$ IsBalanced-Reaction(Reaction*))\\
 \hline
 \end{tabular}
 \end{center}
@@ -324,17 +295,9 @@ ReactionT = sequence [2] of ChemicalEq.\\
 \subsection{Semantics}
 
 \subsubsection{State Variables}
-e: ElementT
-\newline
-m : MoleculeT 
-\newline
-C: CompoundT
-\newline
-S: StoichiometricT
-\newline
-Ce: ChemicalEq
-\newline
-R: ReactionT
+
+R : ReactionT
+
 \subsubsection{Environment Variables}
 
 None.
@@ -345,69 +308,23 @@ None.
 
 \subsubsection{Access Routine Semantics}
 
-\noindent (Number-of-Atoms-in-Molecule):
+\noindent IsBalanced-Reaction(Reaction):
 \begin{itemize}
 \item transition: None.
-\item output: Number-of-Atoms-in-Molecule $\coloneqq$ $\mathbb{N}$
-\item exception:  None
+\item output: out $\coloneqq$ ($\forall$( Number-of-Atoms-in-ChemicalEq(R[0],e)  = Number-of-Atoms-in-ChemicalEq (R[1] ,e ) )$\Rightarrow$ True)
+\item exception: None.
 \end{itemize}
 
-\noindent (Number-of-Atoms-in-Compound):
+\noindent Balanced-Reaction(Reaction):
 \begin{itemize}
-\item transition: None.
-\item output: Number-of-Atoms-in-Compound $\coloneqq$ $\mathbb{N}$
-\item exception:  None
-\end{itemize}
-
-\noindent (Number-of-Atoms-in-Stoichiometric):
-\begin{itemize}
-\item transition: None.
-\item output: Number-of-Atoms-in-Stoichiometric $\coloneqq$  $\mathbb{N}$
-\item exception:  None
-\end{itemize}
-
-\noindent (Number-of-Atoms-in-ChemicalEq):
-\begin{itemize}
-\item transition: None.
-\item output: Number-of-Atoms-in-ChemicalEq $\coloneqq$  $\mathbb{N}$
-\item exception:  None
-\end{itemize}
-
-\noindent (ElementsInCompoundT):
-\begin{itemize}
-\item transition: None.
-\item output: set of ElementT 
-\item exception:  None
-\end{itemize}
-
-\noindent (Elements of a ChemicalEq):
-\begin{itemize}
-\item transition: None.
-\item output: set of ElementT
-\item exception:  None
-\end{itemize}
-
-\noindent (Balanced reaction for an element):
-\begin{itemize}
-\item transition: None 
-\item output: if (Number-of-Atoms-in-ChemicalEq(R[0],e) = Number-of-Atoms-in-ChemicalEq (R[1] ,e ) )
-then True\\
-if ( Number-of-Atoms-in-ChemicalEq(R[0],e) $\neq$ Number-of-Atoms-in-ChemicalEq (R[1] ,e ) ) then False
-\item exception:  None
-\end{itemize}
-
-\noindent (Balanced reaction):
-\begin{itemize}
-\item transition: None.
-\item output: if $\forall$( Number-of-Atoms-in-ChemicalEq(R[0],e) = Number-of-Atoms-in-ChemicalEq (R[1] ,e ) )
-then True\\
-if $\exists$( Number-of-Atoms-in-ChemicalEq(R[0],e) $\neq$ Number-of-Atoms-in-ChemicalEq (R[1] ,e ) )
-then False
-\item exception:  None
+\item transition: Reaction $\coloneqq$ Reaction*
+\item output: None. 
+\item exception: exc $\coloneqq$  ($\neg$ IsBalanced-Reaction(Reaction*) $\Rightarrow$ not-balanced)
 \end{itemize}
 
 
 \subsubsection{Local Functions}
+
 1. Number-of-Atoms-in-Molecule: MoleculeT  X ElementT $\rightarrow$ $\mathbb{N}$
 \newline
 Number-of-Atoms-in-Molecule(m,e) $\equiv$ (m.element = e $\rightarrow$ m.number $\vert$ m.element $\neq$ e $\rightarrow$ 0) \\
@@ -436,9 +353,10 @@ ElementsInChemicalEq(Ce) $\equiv$ $\cup$ \{ C : CompoundT $\vert$ C $\in$ Ce $\c
 \newline
 IsBalancedReactionForElement (R, e) $\equiv$ Number-of-Atoms-in-ChemicalEq(R[0],e) = Number-of-Atoms-in-ChemicalEq (R[1] ,e )\\ 
 \newline
-8. IsBalancedReaction : ReactionT  $\rightarrow$ B 
+8. IsBalanced-Reaction : ReactionT  $\rightarrow$ B 
 \newline
-IsBalancedReaction(R) $\equiv$ $\forall$ ( e :  ElementT $\vert$ e $\in$ ElementsInChemicalEq(R[0]) $\cdot$ IsBalancedReactionForElement(R, e))
+IsBalanced-Reaction(R) $\equiv$ $\forall$ ( e :  ElementT $\vert$ e $\in$ ElementsInChemicalEq(R[0]) $\cdot$ IsBalancedReactionForElement(R, e))
+
 
 \newpage
   
@@ -450,7 +368,7 @@ Mass
 
 \subsection{Uses}
 
-Balancing (Section \ref{balancing}) , Atomic Mass (Section \ref{Atomic Mass})
+Reaction (Section \ref{Reaction}) , Atomic Mass (Section \ref{Atomic Mass})
 
 \subsection{Syntax}
 
@@ -465,20 +383,20 @@ None.
 \hline
 \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
 \hline
-{Molecular weight} & Atomic-Mass: $\mathbb{R}$
-  \newline Number-of-Atoms-in-Compound: $\mathbb{N}$ & Molecular-weight:$\mathbb{R}$ & - \\
+{Get-Molecular-weight} & Atomic-Mass: $\mathbb{R}$
+  \newline Number-of-Atoms-in-Compound: $\mathbb{N}$ & Molecular-Weight:$\mathbb{R}$ & - \\
 \hline
-{mole-ratio}  & coefficient1 : $\mathbb{N}$
-  \newline coefficient2 : $\mathbb{N}$ & mole-ratio: $\mathbb{N}$  & - \\
+{Convert-Mass-to-Mole1}  & Mass1: $\mathbb{R}$
+  \newline Molecular-Weight1: $\mathbb{R}$ & Mole1: $\mathbb{R}$  & Mass $\leq$ 0\\
+\hline
+{Get-Mole-Ratio}  & Coefficient1 : $\mathbb{N}$
+  \newline Coefficient2 : $\mathbb{N}$ & Mole-Ratio: $\mathbb{N}$  & - \\
   \hline
-{$mole_1$}  & mass : $\mathbb{R}$
-  \newline Molecular-weight: $\mathbb{R}$ & mole: $\mathbb{R}$  & - \\
-\hline
-{$mole_2$} & mole1: $\mathbb{R}$
-  \newline mole-ratio: $\mathbb{R}$ & mole2: $\mathbb{R}$ & - \\
+{Convert-MoleRatio-to-Mole2} & Mole1: $\mathbb{R}$
+  \newline Mole-Ratio: $\mathbb{R}$ & Mole2: $\mathbb{R}$ & - \\
  \hline
- {mass} & mole2: $\mathbb{R}$
-  \newline Molecular-weight: $\mathbb{R}$ & mass:$\mathbb{R}$ & - \\
+ {Convert-Mole-to-Mass} & Mole2: $\mathbb{R}$
+  \newline Molecular-Weight2: $\mathbb{R}$ & Mass2:$\mathbb{R}$ & - \\
 \hline
 \end{tabular}
 \end{center}
@@ -500,55 +418,44 @@ None
 
 \subsubsection{Access Routine Semantics}
 
-\noindent (Molecular-weight):
+\noindent Get-Molecular-weight(Atomic-Mass,Number-of-Atoms-in-Compound):
 \begin{itemize}
 \item transition: None
-\item output: Molecular-weight :=  $\mathbb{R}$ 
+\item output: out $\coloneqq$  Atomic-Mass $\times$ Number-of-Atoms-in-Compound
 \item exception: None 
 \end{itemize}
 
-\noindent (Mass-to-Mole):
+\noindent Convert-Mass-to-Mole(Mass1, Molecular-Weight1):
 \begin{itemize}
 \item transition: None
-\item output: Mole := $\mathbb{R}$ 
+\item output: Mole1 $\coloneqq$  $\frac{Mass1}{Molecular-Weight1}$
+\item exception: exc $\coloneqq$ (Mass1 $\leq$ 0 $\Rightarrow$ NegativeMassException) 
+\end{itemize}
+
+\noindent Get-Mole-Ratio(Coefficient2, Coefficient1):
+\begin{itemize}
+\item transition: None
+\item output: out $\coloneqq$ $\frac{Coefficient2}{Coefficient1}$
 \item exception: None 
 \end{itemize}
 
-\noindent (mole ratio):
+\noindent Convert-MoleRatio-to-Mole(Mole1, Mole-Ratio):
 \begin{itemize}
 \item transition: None
-\item output: mole-ratio := $\mathbb{N}$ 
+\item output:  Mole2 $\coloneqq$ $\frac{Mole1}{Mole-Ratio}$
 \item exception: None 
 \end{itemize}
 
-\noindent (Mole-ratio-to-Mole):
+\noindent Convert-Mole-to-Mass(Mole2, Molecular-Weight2 ):
 \begin{itemize}
 \item transition: None
-\item output: Mole2 := $\mathbb{R}$
-\item exception: None 
-\end{itemize}
-
-\noindent (Mole-to-Mass):
-\begin{itemize}
-\item transition: None
-\item output:  Mass := $\mathbb{R}$
+\item output:  Mass2 $\coloneqq$ $\frac{Mole2}{Molecular-weight2}$
 \item exception: None 
 \end{itemize}
 
 \subsubsection{Local Functions}
-1. Molecular-weight : CompoundT  $\rightarrow$ $\mathbb{R}$ 
-\newline
-Molecular-weight := Atomic-Mass $\times$ Number-of-Atoms-in-Compound\\
-\newline
-2. Mole := $\frac{Mass}{Molecular_weight}$ \\
-\newline
-3. Mole-ratio:  CompoundT $\rightarrow$  $\mathbb{N}$
-\newline
-Mole-ratio := $\frac{coefficient2}{coefficient1}$\\
-\newline
-4. Mole2 := $\frac{Mole1}{mole-ratio}$ \\
-\newline
-5. Mass := $\frac{Mole}{Molecular-weight}$
+None
+
 \newpage
 
 \section{MIS of GUI Module} \label{display} 
@@ -559,7 +466,7 @@ GUI
 
 \subsection{Uses}
 
-Balancing  (Section \ref{balancing}) , Mass (Section \ref{Mass})
+Reaction (Section \ref{Reaction}) , Mass (Section \ref{Mass})
 
 
 \subsection{Syntax}
@@ -567,8 +474,7 @@ Balancing  (Section \ref{balancing}) , Mass (Section \ref{Mass})
 \subsubsection{Exported Constants}
 
 None.
-\subsubsection{Exported Types}
-ReactionT = ? 
+
 \subsubsection{Exported Access Programs}
 
 \begin{center}
@@ -576,43 +482,19 @@ ReactionT = ?
 \hline
 \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
 \hline
-{GUI} & - & Mass: $\mathbb{R}$ \newline balanced-reaction: ReactionT & - \\
+{GUI} & - & Mass: $\mathbb{R}$ \newline Reaction*: ReactionT & - \\
 \hline
 \end{tabular}
 \end{center}
 
 \subsection{Semantics}
 
-\subsubsection{State Variables}
-
-None
-
-\subsubsection{Environment Variables}
-
-screen interface
-
-\subsubsection{Assumptions}
-
-None
-
-\subsubsection{Access Routine Semantics}
-
-\noindent (display):
-\begin{itemize}
-\item transition: None
-\item output: Mass: $\mathbb{R}$ , balanced reaction:  ReactionT 
-\item exception: None
-\end{itemize}
+Not Applicable.
 
 
-\subsubsection{Local Functions}
-
-None
-
-
+%\section*{References}
+\newpage 
 \bibliographystyle {plainnat}
 \bibliography{../../ReferenceMaterial/References}
-\newpage
-
 
 \end{document}
