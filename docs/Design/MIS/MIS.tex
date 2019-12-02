@@ -182,15 +182,49 @@ None.
 \hline
 \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
 \hline
-{$input_1$} & chemical reaction: \newline ReactionT & - & -   \\
-{$input_2$} & Mass: $\mathbb{R}$ & - & -   \\
+{$input_1$} & Chemical-Reaction: \newline ReactionT & - & MismatchedInput  \\
+{$input_2$} & Mass-Value : $\mathbb{R}$ & - &  NegativeMassException  \\
 \hline
 \end{tabular}
 \end{center}
 
 \subsection{Semantics}
 
-Not Applicable.
+\subsubsection{State Variables}
+
+Reaction : ReactionT
+\newline
+Mass : $\mathbb{R}$
+
+\subsubsection{Environment Variables}
+
+None.
+
+\subsubsection{Assumptions}
+
+None.
+
+\subsubsection{Access Routine Semantics}
+
+\noindent $input_1$(Chemical-Reaction):
+\begin{itemize}
+\item transition: Reaction $\coloneqq$ Chemical-Reaction
+\item output:  None.
+\item exception: exc $\coloneqq$ (Chemical-Reaction $\notin$ ReactionT $\Rightarrow$  MismatchedInput)
+\end{itemize}
+
+\noindent $input_2$(Mass-Value):
+\begin{itemize}
+\item transition: Mass  $\coloneqq$ Mass-Value
+\item output:  None.
+\item exception: exc $\coloneqq$ (Mass-Value $\leq$ 0 $\Rightarrow$  NegativeMassException)
+\end{itemize}
+
+\subsubsection{Local Functions}
+ 
+None.
+
+
 
 \newpage
 
