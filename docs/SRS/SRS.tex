@@ -345,7 +345,7 @@ likely change [LC], in which the respective assumption is used.
 
 \begin{itemize}
 
-\item[A\refstepcounter{assumpnum}\theassumpnum \label{Two reactants}:] Chemical reaction with two chemical reactants.
+\item[A\refstepcounter{assumpnum}\theassumpnum \label{Two reactants}:] Chemical reaction with two chemical reactants. 
 \item[A\refstepcounter{assumpnum}\theassumpnum \label{reactant compound}:] Chemical reactant could be single element, molecule or Compound with two elements.
 \item[A\refstepcounter{assumpnum}\theassumpnum \label{product compound}:] Chemical product could be single element, molecule or compound with two elements.
 \item[A\refstepcounter{assumpnum}\theassumpnum \label{Known mass}:] Known mass of one chemical reactant.
@@ -1068,35 +1068,35 @@ other.
 
 	& \aref{Two reactants}&   \aref{reactant compound} &  \aref{product compound} & \aref{Known mass}& \aref{Mass unit}  \\
 \hline
-\tref{Mass_law}         & X& X& X& & \\ \hline
-\ddref{atomicMass}         & X& X& X& & \\ \hline
-\ddref{atoms_count_m}         & X& X& X& & \\ \hline
+\tref{Mass_law}         &X &X &X & & \\ \hline
+\ddref{atomicMass}         & & X& & & \\ \hline
+\ddref{atoms_count_m}         & & X& X& & \\ \hline
 \ddref{atoms_count_c}         & X& X& X& & \\ \hline
 \ddref{atoms_count_Sc}         & X& X& X& & \\ \hline
 \ddref{atoms_count_Eq}        & X& X& X& & \\ \hline
-\ddref{elements_of_compound}         & X& X& X& & \\ \hline
+\ddref{elements_of_compound}         & & X& X& & \\ \hline
 \ddref{elements_of_Eq}          & X& X& X& & \\ \hline
 \ddref{balanced_reaction_elm}          & X& X& X& & \\ \hline
 \ddref{balanced_reaction}          & X& X& X& & \\ \hline
 \ddref{Coefficient}          & X& X& X& & \\ \hline
 \ddref{Mole_ratio}         & X& X& X& & \\ \hline
-\ddref{Molecular_weight}          & X& X& X& & \\ \hline
+\ddref{Molecular_weight}          & & X& & & \\ \hline
 \iref{balanced}             & X& X& X& & \\ \hline
-\iref{Mass_mole}             & X& X& X& & \\ \hline
+\iref{Mass_mole}             & X& & &X &X \\ \hline
 \iref{Mole_ratio_mole}            & X& X& X& & \\ \hline
-\iref{Mole_mass}          & X& X& X& & \\ \hline
-\rref{R_Inputs}          & X& X& X& & \\ \hline
-\rref{R_OutputInputs}       & X& X& X& & \\ \hline
-\rref{R_Calculate}         & X& X& X& & \\ \hline
-\rref{R_VerifyOutput}      & X& X& X& & \\ \hline
-\nfref{Correct}         & X& X& X& & \\ \hline
-\nfref{Verify}        & X& X& X& & \\ \hline
-\nfref{Understandability}         & X& X& X& & \\ \hline
-\nfref{Usability}           & X& X& X& & \\ \hline
-\lcref{Molecular weight}        & X& X& X& & \\ \hline
+\iref{Mole_mass}          & & X& X&X & \\ \hline
+\rref{R_Inputs}          & X& X& X& X& X\\ \hline
+\rref{R_OutputInputs}       & X& X& X& X& X\\ \hline
+\rref{R_Calculate}         & X& X& X& X& X\\ \hline
+\rref{R_VerifyOutput}      & X& X& X& X& X\\ \hline
+\nfref{Accuracy}         & X& X& X& X& X\\ \hline
+\nfref{Verify}        & X& X& X&X & X\\ \hline
+\nfref{Understandability}         & & & & & \\ \hline
+\nfref{Usability}           & X& X& X& & X\\ \hline
+\lcref{Molecular weight}        & & & & & \\ \hline
 \lcref{balance}        & X& X& X& & \\ \hline
-\ulcref{Units}        & X& X& X& & \\ \hline
-\ulcref{reactant}        & X& X& X& & \\ \hline
+\ulcref{Units}        & & & & & X\\ \hline
+\ulcref{reactant}        & X& & & & \\ \hline
 \hline
 \end{tabular}
 \caption{Traceability Matrix Showing the Connections Between Assumptions and Other Items}
@@ -1107,47 +1107,48 @@ other.
 
 \begin{table}[h!]
 \centering
-\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|clc|}
+\resizebox{\textwidth}{!}{\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|clc|}
 \hline        
 	& \tref{Mass_law}&\ddref{atomicMass} & \ddref{atoms_count_m}& \ddref{atoms_count_c}& \ddref{atoms_count_Sc} &\ddref{atoms_count_Eq}&  \ddref{elements_of_compound} &\ddref{elements_of_Eq} & \ddref{balanced_reaction_elm} & \ddref{balanced_reaction} & \ddref{Coefficient} & \ddref{Mole_ratio} & \ddref{Molecular_weight} & \iref{balanced}& \iref{Mass_mole}& \iref{Mole_ratio_mole}& \iref{Mole_mass} \\
 \hline
-\tref{Mass_law}    & & & & & & X&X & & X&X & & & & & & & \\ \hline
-\ddref{atomicMass} & & & & & & X&X & & X&X & & & & & & & \\ \hline
-\ddref{atoms_count_m} & & & & & & X&X & & X&X & & & & & & & \\ \hline
-\ddref{atoms_count_c} & & & & & & X&X & & X&X & & & & & & & \\ \hline
- \ddref{atoms_count_Sc} & & & & & & X&X & & X&X & & & & & & & \\ \hline
-\ddref{atoms_count_Eq} & & & & & & X&X & & X&X & & & & & & & \\ \hline
-\ddref{elements_of_compound} & & & & & & X&X & & X&X & & & & & & & \\ \hline
-\ddref{elements_of_Eq} & & & & & & X&X & & X&X & & & & & & & \\ \hline
-\ddref{balanced_reaction_elm} & & & & & & X&X & & X&X & & & & & & & \\ \hline
-\ddref{balanced_reaction} & & & & & & X&X & & X&X & & & & & & & \\ \hline
-\ddref{Coefficient} & & & & & & X&X & & X&X & & & & & & & \\ \hline
-\ddref{Mole_ratio}  & & & & & & X&X & & X&X & & & & & & & \\ \hline
-\ddref{Molecular_weight} & & & & & & X&X & & X&X & & & & & & & \\ \hline
-\iref{balanced} & & & & & & X&X & & X&X & & & & & & & \\ \hline
-\iref{Mass_mole}      & & & & & & X&X & & X&X & & & & & & & \\ \hline
-\iref{Mole_ratio_mole}    & & & & & & X&X & & X&X & & & & & & & \\ \hline
-\iref{Mole_mass}    & & & & & & X&X & & X&X & & & & & & & \\ \hline
+\tref{Mass_law}    & & & & & & & & & & & & & & X& & & \\ \hline
+\ddref{atomicMass} & & & X&X & & &X & & & & & & & & & & \\ \hline
+\ddref{atoms_count_m} & & X& &X & & &X & & & & & & & & & & \\ \hline
+\ddref{atoms_count_c} & &X &X & & X& & & & & & & & & & & & \\ \hline
+ \ddref{atoms_count_Sc} & & & & X& & X& & & & & & & & & & & \\ \hline
+\ddref{atoms_count_Eq} & & & & & X& & &X & & & & & & & & & \\ \hline
+\ddref{elements_of_compound} & &X &X &X & & & &X & & & & & & & & & \\ \hline
+\ddref{elements_of_Eq} & & & & & & X& X& & X& & & & & & & & \\ \hline
+\ddref{balanced_reaction_elm} & & & &  & & & X& &X & & & & & & & \\ \hline
+\ddref{balanced_reaction} & & & & & & & & & X& &X & & & X& & & \\ \hline
+\ddref{Coefficient} & & & & & & & & & &X & &X & &X & & & \\ \hline
+\ddref{Mole_ratio}  & & & & & & & & & & &X & & & & &X & \\ \hline
+\ddref{Molecular_weight} & &X &X &X & & & & & & & & & & & X& & X\\ \hline
+\iref{balanced} &X & & &  & & & & & X&X & & & & & & & \\ \hline
+\iref{Mass_mole}      & & & & & & & & & & & & &X & & & & \\ \hline
+\iref{Mole_ratio_mole}    & & & & & & & & & & & & & X& & X& & \\ \hline
+\iref{Mole_mass}    & & & & & & & & & & & & &X & & & X& \\ \hline
 \hline
-\end{tabular}
+\end{tabular}}
 \caption{Traceability Matrix Showing the Connections Between Items of Different Sections}
 \label{Table:trace}
 \end{table}
 
 \begin{table}[h!]
 \centering
+
 \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|}
 \hline
 	& \iref{balanced} & \iref{Mass_mole}& \iref{Mole_ratio_mole}& \iref{Mole_mass} & \ref{sec_DataConstraints}& \rref{R_Inputs}& \rref{R_OutputInputs} & \rref{R_Calculate} & \rref{R_VerifyOutput} \\
 \hline
-\iref{balanced}  & & & X& X&X & X& X& X& X \\ \hline
-\iref{Mass_mole}            & & & X&X & X& X&X & X&  \\ \hline
-\iref{Mole_ratio_mole}     & & & & X& & &X &X &  \\ \hline
-\iref{Mole_mass}             & & & & &X & &X & X& \\ \hline
-\rref{R_Inputs}                &X & X&X &X & X& & X& X&X  \\ \hline
-\rref{R_OutputInputs}    & & & & & X& X& & X&X  \\ \hline
-\rref{R_Calculate}    & & & X& X&X X& X& & &X  \\ \hline
-\rref{R_VerifyOutput}   & & & & & & & X&X & \\ \hline
+\iref{balanced}  & & & X& &X & X& X& & X \\ \hline
+\iref{Mass_mole}            & & & X& & X& X& & X& X \\ \hline
+\iref{Mole_ratio_mole}     & X& X& & X& & & &X &  \\ \hline
+\iref{Mole_mass}             & & &X & & & & & X& \\ \hline
+\rref{R_Inputs}                &X & X& & & X& & X& X&X  \\ \hline
+\rref{R_OutputInputs}    &X & & & X& X& X& & X&X  \\ \hline
+\rref{R_Calculate}    &X &X & X& X& & X& & X&  \\ \hline
+\rref{R_VerifyOutput}  &X & & & X& X& X& X& X&\\ \hline
 \hline
 \end{tabular}
 \caption{Traceability Matrix Showing the Connections Between Requirements and Instance Models}
