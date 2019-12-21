@@ -201,7 +201,7 @@ The purpose of this document is to describe the requirements for Stoichiometry M
 produce a mass for unknown reactant in chemical reaction. The goal statements and theoretical models used in the SMMP code are provided, with an emphasis on explicitly identifying assumptions and unambiguous definitions. This document is intended to be used as a reference to provide ad hoc access to all information necessary to understand and verify the model. The SRS is abstract because the contents say what problem is being solved, but do not say how to solve it.\\
  This document will be used as a starting point for subsequent development phases, including writing the design specification and the software verification and validation plan. The design document will show how the requirements are to be realized, including decisions
 on the numerical algorithms and programming environment. The verification and validation plan will show the steps that will be used to increase confidence in the software documentation and the implementation. Although the SRS fits in a series of documents that follow
-the so-called waterfall model, the actual development process is not constrained in any way. Even when the waterfall model is not followed, as Parnas and Clements point out \cite{Parnas:Clements:1986}, the most logical way to present the documentation is still to “fake” a rational design process.
+the so-called waterfall model, the actual development process is not constrained in any way. Even when the waterfall model is not followed, as Parnas and Clements point out \cite{ParnasAndClements1986}, the most logical way to present the documentation is still to “fake” a rational design process.
 
 
 \subsection{Scope of Requirements} 
@@ -214,7 +214,8 @@ Reviewers of this documentation should have a background on Chemistry. Especiall
 
 \subsection{Organization of Document}
 
-The organization of this document follows the template for an SRS for scientific computing software proposed by \cite{Parnas:1972} and \cite{Parnas:EAll:1984}. The presentation follows the standard pattern of presenting goals, theories, definitions, and assumptions. For readers that would like a more bottom up approach, they can start reading the instance models in Section: Instance Models and trace back to find any additional information they require. \\
+The organization of this document follows the template for an SRS for scientific computing software proposed by \cite{Parnas1972}
+and \cite{ParnasEtAl1984}}. The presentation follows the standard pattern of presenting goals, theories, definitions, and assumptions. For readers that would like a more bottom up approach, they can start reading the instance models in Section: Instance Models and trace back to find any additional information they require. \\
 The goal statements ~\ref{goals} are refined to the theoretical models and the theoretical models ~\ref{sec_theoretical} to the instance models  ~\ref{sec_instance}. 
 
 \section{General System Description}
@@ -355,8 +356,7 @@ molecule or compound with two elements. [ DD3, DD4, DD5, DD6, DD7, DD9, DD10, IM
 \item[A\refstepcounter{assumpnum}\theassumpnum \label{Known mass}:] Known mass of one chemical reactant.
 [ IM2, IM4, R1, R2, R3, R4, NF1, NF2]
 \item[A\refstepcounter{assumpnum}\theassumpnum \label{Mass unit}:] Known mass entered in g unit. 
-[ IM2, R1, R2, R3, R4, NF1, NF2, NF4, ULC1]
-\end{itemize}
+[ IM2, R1, R2, R3, R4, NF1, NF2, NF4, ULC1]\end{itemize}
 
 \subsubsection{Type Definition}\label{Type_Detention}
 
@@ -1168,7 +1168,7 @@ NA
 
 \newpage
 \bibliographystyle{unsrt}
-\bibliography {../../ReferenceMaterial/References}
+\bibliography {../../refs/References}
 
 \newpage
 \end{document}
