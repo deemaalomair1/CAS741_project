@@ -54,7 +54,8 @@ urlcolor=cyan          % color of external links
 \begin{tabularx}{\textwidth}{p{3cm}p{2cm}X}
 \toprule {\bf Date} & {\bf Version} & {\bf Notes}\\
 \midrule
-Date 1 & 1.0 & First version of document\\
+1/12/2019 & 1.0 & First version of document\\
+20/12/2019 & 2.0 & Second version of document\\
 \bottomrule
 \end{tabularx}
 
@@ -104,6 +105,12 @@ character & char & a single symbol or digit\\
 integer & $\mathbb{Z}$ & a number without a fractional component in (-$\infty$, $\infty$) \\
 natural number & $\mathbb{N}$ & a number without a fractional component in [1, $\infty$) \\
 real & $\mathbb{R}$ & any number in (-$\infty$, $\infty$)\\
+element & ElementT & set consists of all chemical elements.\\
+Molecule & MoleculeT  & tuple of (element : ElementT, atomValue : N ).\\
+Compound & CompoundT  & set of MoleculeT.\\
+Stoichiometric & StoichiometricT & tuple of (coefficient : N , Compound : CompoundT)\\
+one reaction side & ChemicalEqT & set of StoichiometricT\\
+chemical reaction & ReactionT & sequence [2] of ChemicalEq.\\
 \bottomrule
 \end{tabular} 
 \end{center}
@@ -123,13 +130,11 @@ is introduced in an attempt to simplify the presentation of the MIS.\\
 \noindent
 Chemical reaction:\\
 
-$c_1R[0]_1 + c_2R[0]_2 = cc_1R[1]_1 + cc_2R[1]_2$\\
+$c_1R[0]_1 + c_2R[0]_2 = d_1R[1]_1 + d_2R[1]_2$\\
 
 where $R[0]_1$ is reactant with known mass, $c_1$ is the coefficient number associated to this reactant ,
 $R[0]_2$  is reactant with unknown mass, $c_2$ is the coefficient number associated to this reactant , 
-$R[1]_i$ is a product and  $cc_i$ is he coefficient number associated to this
-product.  \wss{The name $cc_i$ is confusing.  It looks like $c$ times $c_i$.
-  Maybe you could use a name like $d_i$?}
+$R[1]_i$ is a product and  $d_i$ is he coefficient number associated to this product.
 
 \section{Module Decomposition}
 
@@ -147,7 +152,7 @@ The following table is taken directly from the Module Guide document for this pr
 
 \multirow{4}{0.3\textwidth}{Behaviour-Hiding}  &Input Module \\
 & Atomic Mass Module\\
-&ReactionT Module\\
+&Balancing Chemical Reaction Module\\
 & Mass Calculation Module\\
 \midrule
 
@@ -170,7 +175,7 @@ Input
 
 \subsection{Uses}
 
-Not Applicable.
+GUI (Section \ref{display})
 
 \subsection{Syntax}
 
@@ -184,38 +189,28 @@ None.
 \hline
 \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
 \hline
-{$input_1$} & Chemical-Reaction: \newline ReactionT & - & MismatchedInput  \\
-{$input_2$} & Mass-Value : $\mathbb{R}$ & - &  NegativeMassException  \\
+{$input_1$} & elements :ElementT \newline 
+                           atomsValue :$\mathbb{N}$ & - & MismatchedInput  \\
+{$input_2$} & Mass-Value : $\mathbb{R}$ & - & NegativeMassException  \\
 \hline
 \end{tabular}
 \end{center}
-
-\wss{The input module shouldn't take the input as a ReactionT.  The input should
-build the ReactionT from the user's input.  You need a way to translate what the
-user works with to the mini-language your program has developed.  As we have
-discussed before, a parser is probably more work than you want to invest.  My
-advice is that you introduce an environment variable for the screen.  The screen
-will provide the information necessary for building the Reaction.  You need to
-say what information this is.  This is the point where you can customize your
-interface to match your assumptions.  You can decide how many compounds on each
-side of the equation.  My advice is that you can build compounds with a set
-number of molecules and each molecule is built from a drop down list with all of
-your elements and an edit box that accepts a natural number.  I suggest that you
-do not have edit boxes for the coefficients, since those are what you are solving for.}
-\wss{Your GUI module will hide the details of working with a windowing system,
-  widgets etc.  The input module will use this GUI module.}
 
 \subsection{Semantics}
 
 \subsubsection{State Variables}
 
-Reaction : ReactionT
+element : ElementT
+\newline
+atomsValue : $\mathbb{N}$
 \newline
 Mass : $\mathbb{R}$
 
 \subsubsection{Environment Variables}
 
-None. \wss{You want an environment variable for your screen here.}
+scr :  13.3-inch (1440 x 900) MacBook Air screen .
+\newline
+bk : keyboard input. 
 
 \subsubsection{Assumptions}
 
@@ -225,13 +220,10 @@ None.
 
 \noindent $input_1$(Chemical-Reaction):
 \begin{itemize}
-\item transition: Reaction $\coloneqq$ Chemical-Reaction
+\item transition: ReactionT $\coloneqq$ element , atomsValue
 \item output:  None.
-\item exception: exc $\coloneqq$ (Chemical-Reaction $\notin$ ReactionT $\Rightarrow$  MismatchedInput)
+\item exception: exc $\coloneqq$ (element $\notin$ ElementT $\lor$ atomsValue $\notin$ $\mathbb{N}$ $\Rightarrow$  MismatchedInput)
 \end{itemize}
-
-\wss{This is too simple for building the reaction.  As discussed above, you need
-  show how the user's input is translated into the terminology of your program.}
 
 \noindent $input_2$(Mass-Value):
 \begin{itemize}
@@ -240,12 +232,9 @@ None.
 \item exception: exc $\coloneqq$ (Mass-Value $\leq$ 0 $\Rightarrow$  NegativeMassException)
 \end{itemize}
 
-\wss{I think you need more than one mass don't you?}
-
 \subsubsection{Local Functions}
  
 None.
-
 
 
 \newpage
@@ -278,7 +267,7 @@ None.
 \hline
 \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
 \hline
-{Atomic-Mass} & e: ElementT & AtomicMass: $\mathbb{R}$ & e $\notin$ ElementT  \\
+{Atomic-Mass} & e: ElementT & AtomicMass: $\mathbb{R}$ & - \\
 \hline
 \end{tabular}
 \end{center}
@@ -291,11 +280,7 @@ None.
 
 \subsubsection{Environment Variables}
 
-Atomic Mass library file. \wss{This is not how environment variables are used.
-  I suggest you read \citet{HoffmanAndStrooper1995}.  For this module the entry
-  should be ``None.''  The only place you will have environment modules is when
-  you are getting input from the screen (or a file), or outputting results to the
-  screen (or a file).}
+None.
 
 \subsubsection{Assumptions}
 
@@ -306,20 +291,12 @@ None.
 \noindent Atomic-Mass(e):
 \begin{itemize}
 \item transition: None.
-\item output:  out $\coloneqq$ AtomicMass \wss{AtomicMass on its own is a
-    function.  You need to call it with an argument in this case.  Having said
-    this, I don't think you really need a local function.  You can define the
-    output to match the semantics you have for the local function below.  The
-    indirection you have just makes the document more difficult to read.}
-\item exception: exc $\coloneqq$ (e $\notin$ ElementT $\Rightarrow$
-  no-Atomic-Mass) \wss{Since the input to the modules is of type ElementT, how
-    is this condition ever going to be true for their to be an exception?}
+\item output:  out $\coloneqq$ AtomicMass(e)
+\item exception: None.
 \end{itemize}
 
 \subsubsection{Local Functions}
-AtomicMass: ElementT $\rightarrow$ $\mathbb{R}$ 
-\newline
-AtomicMass(e) $\equiv$ ( e= H $\rightarrow$ 1.0079 $\vert$  e= He $\rightarrow$ 4.002 $\vert$...)  
+None
 
 \newpage
 
@@ -351,17 +328,16 @@ ReactionT = ?
 \hline
 \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
 \hline
-{IsBalanced-Reaction} & Reaction: \newline ReactionT &  B: Boolean  & - \\
+ReactionT & ElementT, MoleculeT, \newline
+		CompoundT , \newline StoichiometricT \newline
+		ChemicalEqT. & - & - \\
+\hline		   
+{IsBalanced-Reaction} & - &  B: Boolean  & - \\
 \hline
 {Balanced-Reaction} & Reaction: \newline ReactionT &  Reaction*: \newline ReactionT  &  ($\neg$ IsBalanced-Reaction(Reaction*))\\
 \hline
 \end{tabular}
 \end{center}
-
-\wss{You need a constructor for your ADT.  The input to this ADT is of the same
-  type as the ADT, but how do you create this input?}
-\wss{The isBalanced-Reaction should work with self to see if the reaction is
-  itself is balanced.  There is no need for an argument.}
 
 \subsection{Semantics}
 
@@ -379,35 +355,21 @@ None.
 
 \subsubsection{Access Routine Semantics}
 
-\noindent IsBalanced-Reaction(Reaction):
+\noindent IsBalanced-Reaction():
 \begin{itemize}
 \item transition: None.
-\item output: out $\coloneqq$ ($\forall$( Number-of-Atoms-in-ChemicalEq(R[0],e)
-  = Number-of-Atoms-in-ChemicalEq (R[1] ,e ) )$\Rightarrow$ True) \wss{What is
-    your dummy variable for the quantification?  The $\Rightarrow$ is used for a
-    conditional rule, but you do not have a conditional rule here.  I think I
-    know what you are trying to say, but mathematically this does not have the
-    correct syntax.}
+\item output: out $\coloneqq$  True  $\lor$ False 
 \item exception: None.
 \end{itemize}
 
 \noindent Balanced-Reaction(Reaction):
 \begin{itemize}
-\item transition: Reaction $\coloneqq$ Reaction*
+\item transition: Reaction* $\coloneqq$  Reaction 
 \item output: None. 
 \item exception: exc $\coloneqq$  ($\neg$ IsBalanced-Reaction(Reaction*) $\Rightarrow$ not-balanced)
 \end{itemize}
 
-\wss{This is where the most important part of your program happens.  How do you
-  balance a chemical reaction?  You should at least have a statement that says
-  what will potentially be changed in the reaction.  You need to solve for the
-  coefficients such that the reaction is balanced.  You should also say what it
-  takes for a unique solution.  Ideally, you will solve so that the coefficients
-  are all natural numbers.  However, if you want to simplify, you can have the
-  coefficients be real numbers.  I'm not sure you have thought about how you are
-  going to balance your equation.  The following web-page gives a nice
-  explanation of what is involved:
-  \url{https://www.nayuki.io/page/chemical-equation-balancer-javascript}}
+The program will transfer unbalanced reaction to balanced one by counting the number of atoms used for each element in reactants side and in the products side then compare them together. if the total is not the same, it will add an appropriate coefficient which is belong to natural number before each reactant and product to make the number of atoms in each side equal. it will repeat this process for all element involved in the reaction until it end up with a balance reaction(Reaction*). where Reaction* = coefficient1 * Reactant1 + coefficient2 * Reactant2 = coefficient3 * Product1 + coefficient4 * Product2. If the reaction is already balanced no coefficient will be needed. 
 
 \subsubsection{Local Functions}
 
@@ -455,7 +417,6 @@ Mass
 \subsection{Uses}
 
 Input (Section \ref{input}) , Atomic Mass (Section \ref{Atomic Mass}) , Reaction (Section \ref{Reaction}) 
-
 \subsection{Syntax}
 
 \subsubsection{Exported Constants}
@@ -469,8 +430,7 @@ None.
 \hline
 \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
 \hline
-{Get-Molecular-weight} & Atomic-Mass: $\mathbb{R}$
-  \newline Number-of-Atoms-in-Compound: $\mathbb{N}$ & Molecular-Weight:$\mathbb{R}$ & - \\
+{Get-Molecular-weight} & Number-of-Atoms-in-Compound: $\mathbb{N}$ & Molecular-Weight:$\mathbb{R}$ & - \\
 \hline
 {Convert-Mass-to-Mole1}  & Mass1: $\mathbb{R}$
   \newline Molecular-Weight1: $\mathbb{R}$ & Mole1: $\mathbb{R}$  & Mass $\leq$ 0\\
@@ -486,14 +446,6 @@ None.
 \hline
 \end{tabular}
 \end{center}
-
-\wss{Since you have a function for atomic mass of an element, you don't need
-  atomic mass as an input for Get-Molecular-weight.  Given a molecule, you can
-  just calculate its weight.  You have all of the information you need inside
-  the module.}
-\wss{Several ADTs are missing.  You need to define ElementT, MoleculeT,
-  CompoundT, StoichiometricT and ChemicalEqT.  When I mentioned ReactionT, that
-  was just one example of the types that you need.}
 
 \subsection{Semantics}
 
@@ -512,7 +464,7 @@ None
 
 \subsubsection{Access Routine Semantics}
 
-\noindent Get-Molecular-weight(Atomic-Mass,Number-of-Atoms-in-Compound):
+\noindent Get-Molecular-weight(Number-of-Atoms-in-Compound):
 \begin{itemize}
 \item transition: None
 \item output: out $\coloneqq$  Atomic-Mass $\times$ Number-of-Atoms-in-Compound
@@ -556,8 +508,7 @@ None
 
 \subsection{Module}
 
-GUI \wss{I discussed the purpose of the GUI module under the topic of the Input
-  module.}
+GUI
 
 \subsection{Uses}
 
@@ -586,25 +537,10 @@ None.
 
 Not Applicable.
 
-\wss{Further Notes on the missing parts of the design:}
-\wss{I also think you need an ADT for Sets.  If you want to work without sets,
-  you probably can, but they would nicely connect your SRS and your MIS.
-  Defining a generic ADT for sets would be straightforward, but you don't even
-  need to do that.  The only sets you will have will be sets of elements, so you
-  could define an ADT for sets of elements.  You don't need to implement
-  everything that sets have for operations, but you would need a test for
-  equality.}
-\wss{If you find the idea of sets confusing and you don't want all of the ADTs
-  (MoleculeT etc) I mentioned above, I believe that you can come up with a
-  design that works.  It is critical though that you have an ElementT.  You
-  can't just assume it.  You also need a way to identify the coefficients that
-  you are solving for.  The goal for the next step is to be able to write code,
-  but I don't think you know how you are going to balance your equations.
-  Without coefficients you cannot explain what balancing an equation means.}
 
 %\section*{References}
 \newpage 
 \bibliographystyle {plainnat}
-\bibliography{../../../refs/References}
+\bibliography{../../refs/References}
 
 \end{document}
