@@ -234,7 +234,7 @@ How test will be performed:
 
 \paragraph{Output constrains tests}
 throughout the rest of this document we will use one chemical reaction as an example. in real testing we can use different chemical reactions as long as it consists of two reactants, each consists of two element at most.
-reaction used : ”Fe2O3 + C $\rightarrow$ Fe + CO2”. 
+reaction used : ”$Fe_2$$O_3$ + C $\rightarrow$ Fe + C$O_2$”. 
 
 \begin{enumerate}
 
@@ -245,10 +245,10 @@ Control: Functional, dynamic, automatic.
 Initial State: N.A
 					
 Input: 
-chemical reaction : ”Fe2O3 + C $\rightarrow$ Fe + CO2”
+chemical reaction : ”$Fe_2$$O_3$ + C $\rightarrow$ Fe + C$O_2$”
 two reactants and two products each with maximum two elements.
 	
-Output: balance reaction : 2Fe2O3 + 3C $\rightarrow$ 4Fe + 3CO2
+Output: balance reaction : 2$Fe_2$$O_3$ + 3C $\rightarrow$ 4Fe + 3C$O_2$
 
 Test Case Derivation: the expected value is balance chemical reaction by adding the appropriate coefficients in front of each reactant and product.
 
@@ -268,11 +268,11 @@ Initial State: Not Applicable
 					
 Input:
 \newline
-chemical reaction : ”Fe2O3 + C $\rightarrow$ Fe + CO2”
+chemical reaction : ”$Fe_2$$O_3$ + C $\rightarrow$ Fe + C$O_2$”
 \newline
 mass of known reactant : 2
 \newline
-name of known reactant: ”Fe2O3”
+name of known reactant: ”$Fe_2$$O_3$”
 				
 Output: C mass = 0.1 g. 
 
@@ -297,7 +297,7 @@ Initial State: N.A
 					
 Input: 
 \newline
-chemical reaction : ”Fe2O3 + C $\rightarrow$ Fe + CO2”
+chemical reaction : ”$Fe_2$$O_3$ + C $\rightarrow$ Fe + $CO_2$”
 two reactants and two products each with maximum two elements.
 	
 Output: "not balance !"
@@ -322,7 +322,7 @@ Control: Functional, dynamic, automatic.
 					
 Initial State: Not Applicable
 					
-Input: name of known reactant: ”Fe2O3”
+Input: name of known reactant: ”$Fe_2$$O_3$”
 				
 Output:  Molecular weight = 55.845*2 + 15.9994*3 =  159.6882 g/mol. 
 
@@ -409,7 +409,7 @@ How test will be performed:
 \begin{itemize}
 \item the system will get Mole2 and Molecular weight derived from other functions
 \item multiply Mole2 by Molecular weight  
-\item send the final result to GUI to be displyed.
+\item send the final result to GUI to be displayed.
 \end{itemize}
 
 \end{enumerate}		
