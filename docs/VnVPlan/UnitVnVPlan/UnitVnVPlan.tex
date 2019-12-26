@@ -30,7 +30,7 @@
 \begin{tabularx}{\textwidth}{p{3cm}p{2cm}X}
 \toprule {\bf Date} & {\bf Version} & {\bf Notes}\\
 \midrule
-24/12/2019 & 1.0 & First version of document\\
+26/12/2019 & 1.0 & First version of document\\
 \bottomrule
 \end{tabularx}
 
@@ -38,6 +38,9 @@
 
 \tableofcontents
 
+\listoftables 
+
+\listoffigures
 \newpage
 
 \section{Symbols, Abbreviations and Acronyms}
@@ -131,8 +134,8 @@ two reactant and one product  & $H_2$ + $O_2$ $\rightarrow$ $H_2$O & accepted\\ 
 two reactant and two product  & Fe$Cl_3$ + MgO $\rightarrow$ $Fe_2$$O_3$ + Mg$Cl_2$ & accepted \\ \hline
 \hline
 \end{tabular}}
-\caption{Input possible entries and its corresponding outputs }
-\label{tab:reqtrace}
+\caption{Input number of elements possible entries and its corresponding outputs }
+\label{elementsnumber}
 \end{table}
 
 Test Case Derivation: the expected entry is chemical reaction with at least two reactants and one product. 
@@ -163,8 +166,8 @@ Fe$Cl_3$ + MgO $\rightarrow$ $Fe_2$$O_3$ & error massage & Mg is in reactant si
 $CO_2$ + O  $\rightarrow$ C$H_4$ + $O_2$ & error massage & H is in product side but not reactant side  \\ \hline
 \hline
 \end{tabular}}
-\caption{Input possible entries and its corresponding outputs }
-\label{tab:reqtrace}
+\caption{Input name of element possible entries and its corresponding outputs }
+\label{elementname}
 \end{table}
 
 Test Case Derivation: the expected entry is consistent chemical reaction where each element entered the reaction must produced from the reaction. 
@@ -195,8 +198,8 @@ atom value $\leq$ 0& error massage \\ \hline
 atom value $>$ 0  & accepted\\ \hline
 \hline
 \end{tabular}
-\caption{Input possible value's level }
-\label{tab:reqtrace}
+\caption{Input atom possible value's level}
+\label{atom}
 \end{table}
 	
 Output: error massage indicating that atom value is not a number or atom value $\leq$ 0. 
@@ -229,8 +232,8 @@ Mass $\leq$ 0& error massage \\ \hline
 Mass $>$ 0  & accepted\\ \hline
 \hline
 \end{tabular}
-\caption{Input possible value's level }
-\label{tab:reqtrace}
+\caption{Input mass possible value's level }
+\label{mass}
 \end{table}
 
 Output: error massage indicating that mass value is not a number or mass value $\leq$ 0. 
@@ -244,7 +247,7 @@ How test will be performed:
 \item if its a number it will test if its greater than 0 or not.  if not error massage will be shown.
 \end{itemize}
 
-\item{\bf T4: get reactant of known Mass  \\}
+\item{\bf T5: get reactant of known Mass  \\}
 
 Control: Functional, dynamic, automatic.
 					
@@ -267,7 +270,7 @@ the system will check if user choose the number of known reactant mass from drop
 
 \begin{enumerate}
 
-\item{\bf T5: Count total number of atoms for each element in each side\\}
+\item{\bf T6: Count total number of atoms for each element in each side\\}
 
 Control: Functional, dynamic, automatic.
 					
@@ -287,7 +290,7 @@ How test will be performed:
 \end{itemize}
 
 
-\item{\bf T6: CheckBalanceTest\\}
+\item{\bf T7: CheckBalanceTest\\}
 
 Control: Functional, dynamic, automatic.
 					
@@ -308,7 +311,7 @@ How test will be performed:
 \item if not balance then balance form will be calculated and "not balance !" will be displayed to the user using GUI widget with the new form of the reaction.
 \end{itemize}
 
-\item{\bf T7: BalanceTest\\}
+\item{\bf T8: BalanceTest\\}
 
 Control: Functional, dynamic, automatic.
 					
@@ -328,7 +331,7 @@ How test will be performed:
 \item if not balance then balance form will be calculated and updated dictionaries will be generated.
 \end{itemize}
 
-\item{\bf T8: Coefficients Test\\}
+\item{\bf T9: Coefficients Test\\}
 
 Control: Functional, dynamic, automatic.
 					
@@ -362,7 +365,7 @@ How test will be performed:
 
 \begin{enumerate}
 
-\item{\bf T9: atomic mass Test\\}
+\item{\bf T10: atomic mass Test\\}
 
 Control: Functional, dynamic, automatic.
 					
@@ -381,7 +384,7 @@ How test will be performed:
 \item save the final result to be used in other function.
 \end{itemize}
 
-\item{\bf T10: MolecularWeightCalculationTest\\}
+\item{\bf T11: MolecularWeightCalculationTest\\}
 
 Control: Functional, dynamic, automatic.
 					
@@ -401,7 +404,7 @@ How test will be performed:
 \item save the final result to be used in other function.
 \end{itemize}
 
-\item{\bf T11: Mole1CalculationTest \\}
+\item{\bf T12: Mole1CalculationTest \\}
 
 Control: Functional, dynamic, automatic.
 					
@@ -420,7 +423,7 @@ How test will be performed:
 \item save the final result to be used in other function.
 \end{itemize}
 
-\item{\bf T12: MoleRatioCalculationTest \\}
+\item{\bf T13: MoleRatioCalculationTest \\}
 
 Control: Functional, dynamic, automatic.
 					
@@ -439,7 +442,7 @@ How test will be performed:
 \item save the final result to be used in other function.
 \end{itemize}
 
-\item{\bf T13: Mole2CalculationTest\\}
+\item{\bf T14: Mole2CalculationTest\\}
 
 Control: Functional, dynamic, automatic.
 					
@@ -458,7 +461,7 @@ How test will be performed:
 \item save the final result to be used in other function.
 \end{itemize}
 
-\item{\bf T14: MassCalculationTest\\}
+\item{\bf T15: MassCalculationTest\\}
 
 Control: Functional, dynamic, automatic.
 					
@@ -486,7 +489,7 @@ How test will be performed:
 
 \begin{enumerate}
 
-\item{\bf T15: ReactionOutputTest\\}
+\item{\bf T16: ReactionOutputTest\\}
 
 Control: Functional, dynamic, automatic.
 					
@@ -508,7 +511,7 @@ How test will be performed:
 \end{itemize}
 
 
-\item{\bf T16: MassOutputTest\\}
+\item{\bf T17: MassOutputTest\\}
 
 Control: Functional, dynamic, automatic.
 					
@@ -536,7 +539,7 @@ the system will calculate mass value using the calculation method and ensure it'
 
 \begin{enumerate}
 
-\item{ \bf T17: UsabilityTesting\\}
+\item{ \bf T18: UsabilityTesting\\}
 
 Type:  Nonfunctional,Dynamic, Manual.
 					
@@ -548,7 +551,7 @@ Output/Result: Balance reaction , Second reactant mass.
 					
 How test will be performed: user need to complete small survey. see appendix A 
 					
-\item{\bf T18: Reliability\\}
+\item{\bf T19: Reliability\\}
 
 Type: Functional, Dynamic, Manual, Static etc.
 					
@@ -570,22 +573,22 @@ A trace between system tests and requirements is provided in
 
 \begin{table}[h!]
 \centering
-\resizebox{\textwidth}{!}{\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+\resizebox{\textwidth}{!}{\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
 \hline
-  & T1 & T2 & T3 & T4 & T5 & T6 & T7 &T8  & T9 & T10 & T11 & T12 &  T13 & T14&T15 & T16  \\
+  & T1 & T2 & T3 & T4 & T5 & T6 & T7 &T8  & T9 & T10 & T11 & T12 &  T13 & T14&T15 & T16  & T17 \\
 \hline
-Input Module  & X& X& X& X& & & & &  & & & & & & &  \\ \hline
-Atomic Mass Module  & & & & & & & & & X & & & & & &  & \\ \hline
-Balancing Chemical Reaction Module & & & & &X &X&X & X & & & & & & & &  \\ \hline
-Mass Calculation Module  & & & & & & & & & & X&X&X&X&X& & \\ \hline
-GUI Module & & & & & & & & &  & & & & & & X  & X\\ \hline
+Input Module  & X& X& X& X& X& & & & &  & & & & & & &  \\ \hline
+Atomic Mass Module  & & & & & & & & & & X & & & & & &  & \\ \hline
+Balancing Chemical Reaction Module & & & && &X &X&X & X & & & & & & & &  \\ \hline
+Mass Calculation Module  & & & & & & & && & & X&X&X&X&X& & \\ \hline
+GUI Module & & & & & & & & &  & & & & && & X  & X\\ \hline
 \hline
 \end{tabular}}
 \caption{Traceability Matrix Showing the Connections Between Modules and Test Cases}
 \label{tab:reqtrace}
 \end{table}
 
-\newpage
+~\newpage
 \bibliographystyle{unsrt}
 
 \bibliography{../../refs/References}
